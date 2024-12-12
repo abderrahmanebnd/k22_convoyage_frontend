@@ -1,5 +1,11 @@
-import React from "react";
+import Header from "@/ui/Header";
+import HeroSection from "@/ui/HeroSection";
 
 export default function Homepage(): JSX.Element {
-  return <div>Homepage</div>;
+  return (
+    <>
+      <Header />
+      <HeroSection />
+    </>
+  );
 }
