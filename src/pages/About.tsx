@@ -4,7 +4,7 @@ import CustomTitle from "@/ui/CustomTitle";
 export default function About() {
   return (
     <main className="mt-5">
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 items-center container mx-auto px-10">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 items-center container mx-auto px-10 mb-5">
         <figure>
           <img
             src="/images/about_us.jpeg"

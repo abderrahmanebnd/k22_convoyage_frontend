@@ -3,7 +3,7 @@ import CustomButton from "./CustomButton";
 
 export default function ContactOrder() {
   return (
-    <div className="bg-main px-10 py-5 mt-5">
+    <div className="bg-main px-10 py-10 ">
       <div className="container mx-auto text-center">
         <h1 className="text-white text-xl md:text-2xl">
           Prêt à discuter de vos besoins en transport ?
