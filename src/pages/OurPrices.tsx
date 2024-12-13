@@ -5,17 +5,17 @@ const data: { title: string; text: string; imgSrc: string }[] = [
   {
     title: "Des prix compétitifs pour tous vos besoins de transport",
     text: "Chez kd22transport, nous comprenons que le coût est un facteur essentiel pour nos clients. C'est pourquoi nous nous efforçons de fournir des prix compétitifs sans compromettre la qualité de nos services. Nos tarifs varient en fonction de plusieurs éléments, tels que la distance, le type de véhicule à transporter, et les services supplémentaires requis. Nous vous invitons à nous contacter pour obtenir un devis sur mesure qui correspond parfaitement à vos attentes. Grâce à notre approche transparente, vous saurez exactement ce que vous payez et pourquoi, ce qui vous permettra de prendre une décision éclairée.",
-    imgSrc: "/images/prix_page_3.jpg",
+    imgSrc: "/images/prix_page_3.webp",
   },
   {
     title: "Une personnalisation adaptée à vos besoins",
     text: "Nous croyons fermement que chaque client est unique et que ses besoins de transport le sont également. C'est pourquoi, chez kd22transport, nous proposons des solutions de convoyage automobile personnalisées. Que vous ayez besoin d'une simple livraison ou d'une assistance plus complexe, nous nous adaptons à vos exigences spécifiques. Nos prix reflètent cette personnalisation, assurant ainsi que vous ne payez que pour les services dont vous avez réellement besoin. Nous vous encourageons à nous contacter pour discuter de vos besoins et obtenir un devis qui répond à vos attentes.",
-    imgSrc: "/images/prix_page_2.jpg",
+    imgSrc: "/images/prix_page_2.webp",
   },
   {
     title: "Transparence et confiance au cœur de notre service",
     text: "La transparence est essentielle dans notre relation avec nos clients. Nous nous engageons à vous fournir toutes les informations nécessaires concernant nos prix et nos services. Aucun coût caché, aucune surprise : vous serez informé à chaque étape du processus. Chez kd22transport, nous voulons établir une relation de confiance avec nos clients. En nous contactant pour un devis, vous obtenez non seulement une estimation précise, mais aussi l'assurance de travailler avec une entreprise fiable et professionnelle. N'hésitez pas à nous poser toutes vos questions, nous sommes là pour vous aider.",
-    imgSrc: "/images/prix_page_1.jpg",
+    imgSrc: "/images/prix_page_1.webp",
   },
 ];
 export default function OurPrices() {

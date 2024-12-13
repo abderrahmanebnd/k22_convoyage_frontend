@@ -41,9 +41,9 @@ export default function Testimonials() {
         </div>
         <figure>
           <img
-            width="320"
+            width="430"
             height="200"
-            src="/images/satisfaction-client-1.jpg"
+            src="/images/satisfaction-client-1.webp"
             alt="A person extending their hand to another as a gesture of offering  greeting."
             className="rounded-lg"
           />
