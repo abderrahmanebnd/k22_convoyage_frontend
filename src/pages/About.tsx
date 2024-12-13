@@ -46,7 +46,11 @@ export default function About() {
           </p>
         </div>
       </section>
-      <ContactOrder />
+      <ContactOrder
+        title="Prêt à discuter de vos besoins en transport ?"
+        text="Contactez-nous dès aujourd'hui pour obtenir un devis personnalisé et découvrir comment nous pouvons vous aider."
+        buttonText="Nous contacter"
+      />
     </main>
   );
 }

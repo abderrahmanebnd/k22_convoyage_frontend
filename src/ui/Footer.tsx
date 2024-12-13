@@ -8,7 +8,12 @@ export default function Footer() {
       <p className="text-gray-400 mb-4">
         Transport et livraison de véhicules avec soin et efficacité.
       </p>
-      <ul className="flex justify-center space-x-5 mb-6">
+      <ul className="flex justify-center space-x-5 mb-6 items-center">
+        <li>
+          <span className=" hover:text-main tracking-wider ">
+            +213 561278490
+          </span>
+        </li>
         <li>
           <a href="#" className=" hover:text-main ">
             <Facebook className="w-5 h-5 inline-block " />

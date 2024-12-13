@@ -25,7 +25,7 @@ export default function Testimonials() {
             Témoignages de nos clients{" "}
           </CustomTitle>
 
-          <p className="text-text text-sm leading-6">
+          <article className="text-text text-sm leading-6">
             kd22transport est une entreprise spécialisée dans le convoyage
             automobile, offrant des services de transport de véhicules, de
             transfert et de logistique en France. Forts d'une expérience
@@ -37,7 +37,7 @@ export default function Testimonials() {
             avec nos clients en garantissant leur satisfaction. Chez
             kd22transport, chaque mission est réalisée avec le plus grand soin
             et professionnalisme.
-          </p>
+          </article>
         </div>
         <figure>
           <img
@@ -81,7 +81,11 @@ export default function Testimonials() {
           </p>
         </div>
       </section>
-      <ContactOrder />
+      <ContactOrder
+        title="Prêt à nous rejoindre ?"
+        text="Pour toute demande de renseignement ou pour discuter de vos besoins en transport, n'hésitez pas à nous contacter. Nous sommes là pour vous aider."
+        buttonText="Nous écrire"
+      />
     </main>
   );
 }
