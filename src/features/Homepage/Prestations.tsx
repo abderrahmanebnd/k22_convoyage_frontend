@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import CustomButton from "../../ui/CustomButton";
 import { ArrowUpRight } from "lucide-react";
