@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "@/ui/Logo";
 import CustomButton from "@/ui/CustomButton";
 import { LogIn, MenuIcon } from "lucide-react";
@@ -51,14 +51,22 @@ export function Header(): JSX.Element {
 }
 
 function CustomLink({ text, to }: { to: string; text: string }): JSX.Element {
+  const { pathname } = useLocation();
+
   return (
     <li>
       <Link
         to={to}
-        className="relative font-semibold py-2 px-2 hover:text-main transition-colors duration-200 group"
+        className={`relative font-semibold py-2 px-2 hover:text-main transition-colors duration-200 group ${
+          to === pathname ? "text-main" : ""
+        }`}
       >
         {text}
-        <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-main transition-all duration-300 group-hover:w-full"></span>
+        <span
+          className={`absolute bottom-0 left-0 w-0 h-[2px] bg-main transition-all duration-300  ${
+            pathname === to ? "w-full" : "group-hover:w-full"
+          }`}
+        ></span>
       </Link>
     </li>
   );
