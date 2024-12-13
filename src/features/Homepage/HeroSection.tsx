@@ -4,7 +4,7 @@ export default function Homepage() {
   return (
     <section
       className="bg-cover relative bg-center h-screen"
-      style={{ backgroundImage: 'url("/images/bg_1.png")' }}
+      style={{ backgroundImage: 'url("/images/bg_1.webp")' }}
     >
       {/* Black overlay */}
       <div className="absolute inset-0 bg-black opacity-30"></div>

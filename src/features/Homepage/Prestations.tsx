@@ -12,7 +12,7 @@ const infos: {
   {
     title: "Votre véhicule, notre priorité",
     text: "Nous assurons un transport sécurisé et efficace de votre véhicule.Chaque mission est réalisée avec soin et professionnalisme pour garantir votre tranquillité d'esprit.",
-    imgSrc: "/images/pres.jpg",
+    imgSrc: "/images/pres.webp",
     imgAlt: "Transport de véhicules",
   },
   {

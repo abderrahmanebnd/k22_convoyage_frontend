@@ -41,6 +41,8 @@ export default function Testimonials() {
         </div>
         <figure>
           <img
+            width="320"
+            height="200"
             src="/images/satisfaction-client-1.jpg"
             alt="A person extending their hand to another as a gesture of offering  greeting."
             className="rounded-lg"
@@ -66,7 +68,9 @@ export default function Testimonials() {
         <div className="grid grid-cols-1 sm:grid-cols-2 container mx-auto  w-[70%] justify-center gap-10 ">
           <figure>
             <img
-              src="/images/client.jpg"
+              width="200"
+              height="200"
+              src="/images/client.webp"
               alt="man"
               className="rounded-lg w-full sm:w-2/3 ml-auto"
             />
