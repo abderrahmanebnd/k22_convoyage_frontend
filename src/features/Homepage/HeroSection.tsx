@@ -19,9 +19,7 @@ export default function Homepage() {
         <h1 className="text-white text-4xl  sm:text-5xl capitalize font-bold tracking-wide mb-5 mt-3">
           Rapide, simple et facile.
         </h1>
-        <CustomButton className="bg-main border-none rounded-md capitalize text-white hover:bg-opacity-95 break-all">
-          contacter nous
-        </CustomButton>
+        <CustomButton primary>contacter nous</CustomButton>
       </div>
     </section>
   );

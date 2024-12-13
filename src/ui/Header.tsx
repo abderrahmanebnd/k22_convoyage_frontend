@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import Logo from "../../ui/Logo";
-import CustomButton from "../../ui/CustomButton";
-import { MenuIcon } from "lucide-react";
+import Logo from "@/ui/Logo";
+import CustomButton from "@/ui/CustomButton";
+import { LogIn, MenuIcon } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -19,7 +19,7 @@ const links: { to: string; text: string }[] = [
 
 export function Header(): JSX.Element {
   return (
-    <header className="flex items-center justify-between container mx-auto bg-white text-lg px-5 backdrop-blur-lg bg-transparent relative">
+    <header className="flex items-center justify-between container mx-auto bg-white text-lg px-5 backdrop-blur-lg bg-transparent relative shadow-slate-700/5 shadow-md">
       {/* Logo */}
       <div className="flex items-center gap-2 mr-auto">
         <Logo />
@@ -30,14 +30,19 @@ export function Header(): JSX.Element {
         <NavSheet />
       </div>
 
-      {/* Navigation Links (Desktop View) */}
       <nav className="hidden lg:block py-4">
         <ul className="flex items-center gap-4 text-black">
           {links.map((link) => (
             <CustomLink key={link.to} to={link.to} text={link.text} />
           ))}
-          <li>
-            <CustomButton>Connexion</CustomButton>
+          <li className="flex items-center">
+            <CustomButton className="rounded-lg" primary>
+              Connexion{" "}
+              <LogIn
+                className="
+                w-5 h-5"
+              />
+            </CustomButton>{" "}
           </li>
         </ul>
       </nav>
@@ -71,8 +76,14 @@ function NavSheet(): JSX.Element {
             {links.map((link) => (
               <CustomLink key={link.to} to={link.to} text={link.text} />
             ))}
-            <li>
-              <CustomButton>Connexion</CustomButton>
+            <li className="flex items-center">
+              <CustomButton className="rounded-lg" primary>
+                Connexion{" "}
+                <LogIn
+                  className="
+                w-5 h-5"
+                />
+              </CustomButton>{" "}
             </li>
           </ul>
         </SheetHeader>

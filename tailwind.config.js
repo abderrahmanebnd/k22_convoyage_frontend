@@ -44,6 +44,7 @@ module.exports = {
         danger: "#DC3545",
         warning: "#FFA70B",
         main: "#fc6e51",
+        main2: "#b12103",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

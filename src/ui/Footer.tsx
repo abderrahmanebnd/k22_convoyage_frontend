@@ -3,7 +3,7 @@ import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 export default function Footer() {
   const date = new Date();
   return (
-    <footer className="bg-[#222] text-white pt-8 text-center">
+    <footer className="bg-[#222] text-white pt-8 text-center mt-auto">
       <h2 className="text-2xl font-bold mb-4 ">Kd22transport</h2>
       <p className="text-gray-400 mb-4">
         Transport et livraison de véhicules avec soin et efficacité.

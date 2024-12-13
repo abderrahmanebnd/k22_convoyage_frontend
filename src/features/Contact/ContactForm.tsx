@@ -48,12 +48,9 @@ export default function ContactForm() {
             name="message"
             placeholder="Type your message here."
             required
-            className="focus-visible:ring-main min-h-20"
+            className="focus-visible:ring-main min-h-20 mb-2"
           />
-          <CustomButton
-            className="bg-main text-white px-5 rounded-md"
-            type="submit"
-          >
+          <CustomButton primary type="submit">
             Envoyer
           </CustomButton>
         </div>
