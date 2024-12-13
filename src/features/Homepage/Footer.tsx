@@ -1,4 +1,4 @@
-import { Facebook, Twitter, Linkedin } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 
 export default function Footer() {
   const date = new Date();
@@ -8,20 +8,25 @@ export default function Footer() {
       <p className="text-gray-400 mb-4">
         Transport et livraison de véhicules avec soin et efficacité.
       </p>
-      <ul className="flex justify-center space-x-6 mb-6">
+      <ul className="flex justify-center space-x-5 mb-6">
         <li>
-          <a href="#" className="text-gray-400 hover:text-main ">
-            <Facebook className="w-6 h-6 inline-block " />
+          <a href="#" className=" hover:text-main ">
+            <Facebook className="w-5 h-5 inline-block " />
           </a>
         </li>
         <li>
-          <a href="#" className="text-gray-400 hover:text-main">
-            <Twitter className="w-6 h-6 inline-block" />
+          <a href="#" className=" hover:text-main">
+            <Twitter className="w-5 h-5 inline-block" />
           </a>
         </li>
         <li>
-          <a href="#" className="text-gray-400 hover:text-main">
-            <Linkedin className="w-6 h-6 inline-block" />
+          <a href="#" className=" hover:text-main">
+            <Linkedin className="w-5 h-5 inline-block" />
+          </a>
+        </li>
+        <li>
+          <a href="#" className=" hover:text-main">
+            <Instagram className="w-5 h-5 inline-block" />
           </a>
         </li>
       </ul>
