@@ -14,7 +14,7 @@ export default function Homepage(): JSX.Element {
       <Prestations />
       <AccordionHomePage />
       <Contact />
-      <WhoAreWe />
+      {/* <WhoAreWe /> */}
       <Footer />
     </>
   );
