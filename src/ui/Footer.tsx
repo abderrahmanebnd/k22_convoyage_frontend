@@ -11,7 +11,7 @@ export default function Footer() {
       <ul className="flex justify-center space-x-5 mb-6 items-center">
         <li>
           <span className=" hover:text-main tracking-wider ">
-            +213 561278490
+            0033758690076
           </span>
         </li>
         <li>

@@ -14,6 +14,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  color-scheme: light;
+}
 body {
   font-family: "Dm sans", sans-serif;
+  background-color: white;
+  color:black
 }
