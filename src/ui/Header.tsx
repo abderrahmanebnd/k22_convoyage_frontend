@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "@/ui/Logo";
 import CustomButton from "@/ui/CustomButton";
 import { LogIn, MenuIcon } from "lucide-react";
@@ -73,6 +73,7 @@ function CustomLink({ text, to }: { to: string; text: string }): JSX.Element {
 }
 
 function NavSheet(): JSX.Element {
+  const navigate = useNavigate();
   return (
     <Sheet>
       <SheetTrigger>
@@ -85,7 +86,11 @@ function NavSheet(): JSX.Element {
               <CustomLink key={link.to} to={link.to} text={link.text} />
             ))}
             <li className="flex items-center">
-              <CustomButton className="rounded-lg" primary>
+              <CustomButton
+                className="rounded-lg"
+                primary
+                onClick={() => navigate("/login")}
+              >
                 Connexion{" "}
                 <LogIn
                   className="

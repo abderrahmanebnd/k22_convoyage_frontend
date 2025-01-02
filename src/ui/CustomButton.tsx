@@ -6,14 +6,17 @@ export default function CustomButton({
   className,
   type = "button",
   primary = false,
+  onClick,
 }: {
   children: React.ReactNode;
   className?: string;
   type?: "button" | "submit" | "reset";
   primary?: boolean;
+  onClick?: () => void;
 }) {
   return (
     <Button
+      onClick={onClick}
       type={type}
       className={cn(
         `border-slate-3 text-lg py-5 px-3 hover:bg-main hover:bg-opacity-90 hover:text-white transition-colors duration-200 text-black border-stroke border shadow-sm rounded-xl`,

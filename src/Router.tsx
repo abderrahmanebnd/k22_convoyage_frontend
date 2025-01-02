@@ -5,6 +5,8 @@ import Contact from "./pages/Homepage/Contact";
 import HomepageLayout from "./ui/layouts/HomepageLayout";
 import About from "./pages/Homepage/About";
 import OurPrices from "./pages/Homepage/OurPrices";
+import Login from "@/pages/Login";
+import SignUp from "@/pages/Signup";
 
 export default function Router(): JSX.Element {
   return (
@@ -16,6 +18,8 @@ export default function Router(): JSX.Element {
         <Route path="/prices" element=<OurPrices /> />
         <Route path="/contact" element=<Contact /> />
       </Route>
+      <Route path="/signup" element=<SignUp /> />
+      <Route path="/login" element=<Login /> />
     </Routes>
   );
 }
