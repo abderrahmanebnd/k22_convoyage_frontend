@@ -78,7 +78,7 @@ function NavSheet(): JSX.Element {
       <SheetTrigger>
         <MenuIcon className="hover:text-main transition-colors duration-20 mt-2 " />
       </SheetTrigger>
-      <SheetContent className="max-w-[250px] sm:max-w-[400px]">
+      <SheetContent className="max-w-[250px] sm:max-w-[400px] bg-white">
         <SheetHeader>
           <ul className="flex flex-col items-start gap-4 text-black mt-4">
             {links.map((link) => (

@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import Homepage from "./pages/Homepage";
-import Testimonials from "./pages/Testimonials";
-import Contact from "./pages/Contact";
-import HomepageLayout from "./ui/HomepageLayout";
-import About from "./pages/About";
-import OurPrices from "./pages/OurPrices";
+import Homepage from "./pages/Homepage/Homepage";
+import Testimonials from "./pages/Homepage/Testimonials";
+import Contact from "./pages/Homepage/Contact";
+import HomepageLayout from "./ui/layouts/HomepageLayout";
+import About from "./pages/Homepage/About";
+import OurPrices from "./pages/Homepage/OurPrices";
 
 export default function Router(): JSX.Element {
   return (

@@ -1,5 +1,5 @@
-import ContactForm from "@/features/Contact/ContactForm";
-import Map from "@/features/Contact/Map";
+import ContactForm from "@/features/Homepage/ContactForm";
+import Map from "@/features/Homepage/Map";
 
 export default function Contact() {
   return (
