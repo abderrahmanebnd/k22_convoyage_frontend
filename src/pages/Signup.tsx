@@ -39,10 +39,10 @@ const signupSchema = z
     }),
     password: z
       .string({ required_error: "Le mot de passe est requis" })
-      .min(6, "Le mot de passe doit contenir au moins 6 caractères"),
+      .min(8, "Le mot de passe doit contenir au moins 8 caractères"),
     confirmPassword: z
       .string({ required_error: "Confirmez votre mot de passe" })
-      .min(6, "Confirmez votre mot de passe"),
+      .min(8, "Confirmez votre mot de passe"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Les mots de passe ne correspondent pas",

@@ -5,7 +5,7 @@ interface SplitLayoutProps {
 
 export function SplitLayout({ children, imageSrc }: SplitLayoutProps) {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex flex-row-reverse min-h-screen">
       {/* Left side - Full height image */}
       <div className="hidden lg:flex w-1/2 relative">
         <img
