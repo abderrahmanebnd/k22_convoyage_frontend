@@ -32,8 +32,6 @@ export default function Login() {
               id="email"
               type="email"
               placeholder="email@example.com"
-              // value={email}
-              // onChange={(e) => setEmail(e.target.value)}
               required
               className="pl-10 py-5 rounded-lg"
             />
