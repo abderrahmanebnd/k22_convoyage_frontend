@@ -6,6 +6,7 @@ import {
   Sheet,
   SheetContent,
   SheetHeader,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 
@@ -86,6 +87,7 @@ function NavSheet(): JSX.Element {
       </SheetTrigger>
       <SheetContent className="max-w-[250px] sm:max-w-[400px] bg-white">
         <SheetHeader>
+          <SheetTitle className="sr-only">Menu</SheetTitle>
           <ul className="flex flex-col items-start gap-4 text-black mt-4">
             {links.map((link) => (
               <CustomLink key={link.to} to={link.to} text={link.text} />

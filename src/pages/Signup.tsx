@@ -13,7 +13,6 @@ import AuthHeader from "@/ui/AuthHeader";
 import { SplitLayout } from "@/ui/layouts/SplitLayout";
 import CustomButton from "@/ui/CustomButton";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -23,45 +22,33 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
-
-// Zod schema for form validation
-const signupSchema = z
-  .object({
-    name: z
-      .string({ required_error: "Le nom est requis" })
-      .min(2, "Le nom doit contenir au moins 2 caractères"),
-    email: z
-      .string({ required_error: "L'adresse email est requise" })
-      .email("Adresse email invalide"),
-    role: z.enum(["client", "driver"], {
-      invalid_type_error: "Sélectionnez un rôle",
-      required_error: "Sélectionnez un rôle",
-    }),
-    password: z
-      .string({ required_error: "Le mot de passe est requis" })
-      .min(8, "Le mot de passe doit contenir au moins 8 caractères"),
-    confirmPassword: z
-      .string({ required_error: "Confirmez votre mot de passe" })
-      .min(8, "Confirmez votre mot de passe"),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Les mots de passe ne correspondent pas",
-    path: ["confirmPassword"],
-  });
-
-type SignUpFormValues = z.infer<typeof signupSchema>;
+import { useSignup } from "@/api/useSignup";
+import { SignUpFormValues, signupSchema } from "@/lib/types";
 
 export default function SignUp() {
+  const { isError, mutate: signup, isPending, data } = useSignup();
   const form = useForm<SignUpFormValues>({
     resolver: zodResolver(signupSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      role: "client",
+      password: "",
+      passwordConfirm: "",
+    },
   });
 
-  const onSubmit = (data: SignUpFormValues) => {
-    console.log("Form submitted:", data);
+  console.log("from the server", data);
+
+  const onSubmit = (formData: SignUpFormValues) => {
+    signup(formData, {
+      onSuccess: () => console.log("success"),
+      onError: (error) => console.log("Error:", error),
+    });
   };
 
   return (
-    <SplitLayout imageSrc="../../public/images/pres.webp">
+    <SplitLayout imageSrc="/images/pres.webp">
       <div className="relative space-y-4">
         <div className="absolute top-0 left-0">
           <Button variant="ghost" size="icon" asChild>
@@ -77,6 +64,12 @@ export default function SignUp() {
         />
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+            {isError && (
+              <div className="text-red-600 bg-red-100 text-sm">
+                Une erreur est survenue. Veuillez réessayer.
+              </div>
+            )}
+
             {/* Email Field */}
             <FormField
               control={form.control}
@@ -187,7 +180,7 @@ export default function SignUp() {
             {/* Confirm Password Field */}
             <FormField
               control={form.control}
-              name="confirmPassword"
+              name="passwordConfirm"
               render={({ field }) => (
                 <FormItem className="relative">
                   <FormLabel className="sr-only">
@@ -211,8 +204,13 @@ export default function SignUp() {
             />
 
             {/* Submit Button */}
-            <CustomButton type="submit" className="w-full rounded-lg" primary>
-              S'inscrire
+            <CustomButton
+              type="submit"
+              className="w-full rounded-lg"
+              primary
+              disabled={isPending}
+            >
+              {isPending ? "Inscription en cours..." : "S'inscrire"}
             </CustomButton>
           </form>
         </Form>

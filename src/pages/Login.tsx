@@ -34,12 +34,10 @@ export default function Login() {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (data: LoginFormValues) => {
-    console.log("Form submitted:", data);
-  };
+  const onSubmit = (data: LoginFormValues) => {};
 
   return (
-    <SplitLayout imageSrc="../../public/images/pres.webp">
+    <SplitLayout imageSrc="/images/pres.webp">
       <div className="relative space-y-4">
         <div className="absolute top-0 left-0">
           <Button variant="ghost" size="icon" asChild>
