@@ -18,6 +18,7 @@ const links: { to: string; text: string }[] = [
 ];
 
 export function Header(): JSX.Element {
+  const navigate = useNavigate();
   return (
     <header className="flex items-center justify-between container mx-auto bg-white text-lg px-5 backdrop-blur-lg bg-transparent relative shadow-slate-700/5 shadow-md">
       {/* Logo */}
@@ -36,7 +37,11 @@ export function Header(): JSX.Element {
             <CustomLink key={link.to} to={link.to} text={link.text} />
           ))}
           <li className="flex items-center">
-            <CustomButton className="rounded-lg" primary>
+            <CustomButton
+              className="rounded-lg"
+              primary
+              onClick={() => navigate("/login")}
+            >
               Connexion{" "}
               <LogIn
                 className="

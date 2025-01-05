@@ -39,7 +39,7 @@ export default function Login() {
   };
 
   return (
-    <SplitLayout imageSrc="../../public/images/login.webp">
+    <SplitLayout imageSrc="../../public/images/pres.webp">
       <div className="relative space-y-4">
         <div className="absolute top-0 left-0">
           <Button variant="ghost" size="icon" asChild>
