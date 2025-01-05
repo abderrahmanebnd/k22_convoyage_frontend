@@ -32,6 +32,7 @@ export default function AccordionHomePage() {
         {accordionItems.map((item) => {
           return (
             <AccordionItem
+              key={item.ques}
               value={item.ques}
               className="text-white  last:border-b-main   "
             >
