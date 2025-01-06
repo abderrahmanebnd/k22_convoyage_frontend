@@ -16,20 +16,11 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
-
-// Zod schema for login form validation
-const loginSchema = z.object({
-  email: z
-    .string({ required_error: "L'adresse email est requise" })
-    .email("Adresse email invalide"),
-  password: z
-    .string({ required_error: "Le mot de passe est requis" })
-    .min(8, "Le mot de passe doit contenir au moins 8 caractères"),
-});
-
-type LoginFormValues = z.infer<typeof loginSchema>;
+import { LoginFormValues, loginSchema } from "@/lib/types";
+import { useLogin } from "@/api/auth";
 
 export default function Login() {
+  const { mutate: login, isError, isPending } = useLogin();
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
   });

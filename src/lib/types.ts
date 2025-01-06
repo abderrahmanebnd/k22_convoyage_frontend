@@ -34,3 +34,14 @@ export const signupSchema = z
   });
 
 export type SignUpFormValues = z.infer<typeof signupSchema>;
+
+export const loginSchema = z.object({
+  email: z
+    .string({ required_error: "L'adresse email est requise" })
+    .email("Adresse email invalide"),
+  password: z
+    .string({ required_error: "Le mot de passe est requis" })
+    .min(8, "Le mot de passe doit contenir au moins 8 caractères"),
+});
+
+export type LoginFormValues = z.infer<typeof loginSchema>;
