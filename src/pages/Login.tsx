@@ -6,7 +6,6 @@ import AuthHeader from "@/ui/AuthHeader";
 import { SplitLayout } from "@/ui/layouts/SplitLayout";
 import CustomButton from "@/ui/CustomButton";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -18,14 +17,21 @@ import {
 } from "@/components/ui/form";
 import { LoginFormValues, loginSchema } from "@/lib/types";
 import { useLogin } from "@/api/auth";
+import { handleError } from "@/lib/utils";
 
 export default function Login() {
-  const { mutate: login, isError, isPending } = useLogin();
+  const { mutate: login, isError, isPending, error } = useLogin();
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
-  const onSubmit = (data: LoginFormValues) => {};
+  const onSubmit = (data: LoginFormValues) => {
+    login(data);
+  };
 
   return (
     <SplitLayout imageSrc="/images/pres.webp">
@@ -44,6 +50,11 @@ export default function Login() {
         />
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+            {isError && (
+              <div className="text-red-600 bg-red-100 text-sm p-2 rounded-md">
+                {handleError(error)}
+              </div>
+            )}
             {/* Email Field */}
             <FormField
               control={form.control}
@@ -93,8 +104,13 @@ export default function Login() {
             />
 
             {/* Submit Button */}
-            <CustomButton type="submit" className="w-full rounded-lg" primary>
-              Se connecter
+            <CustomButton
+              type="submit"
+              className="w-full rounded-lg"
+              primary
+              disabled={isPending}
+            >
+              {isPending ? "Connexion en cours..." : "Se connecter"}
             </CustomButton>
           </form>
         </Form>

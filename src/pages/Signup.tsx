@@ -24,9 +24,10 @@ import {
 } from "@/components/ui/form";
 import { useSignup } from "@/api/auth";
 import { SignUpFormValues, signupSchema } from "@/lib/types";
+import { handleError } from "@/lib/utils";
 
 export default function SignUp() {
-  const { isError, mutate: signup, isPending, data } = useSignup();
+  const { isError, mutate: signup, isPending, error } = useSignup();
   const form = useForm<SignUpFormValues>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
@@ -38,13 +39,8 @@ export default function SignUp() {
     },
   });
 
-  console.log("from the server", data);
-
   const onSubmit = (formData: SignUpFormValues) => {
-    signup(formData, {
-      onSuccess: () => console.log("success"),
-      onError: (error) => console.log("Error:", error),
-    });
+    signup(formData);
   };
 
   return (
@@ -65,8 +61,8 @@ export default function SignUp() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
             {isError && (
-              <div className="text-red-600 bg-red-100 text-sm">
-                Une erreur est survenue. Veuillez réessayer.
+              <div className="text-red-600 bg-red-100 text-sm p-2 rounded-md">
+                {handleError(error)}
               </div>
             )}
 

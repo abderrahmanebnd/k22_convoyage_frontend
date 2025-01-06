@@ -13,7 +13,7 @@ axiosPrivate.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       // Handle automatic logout
-      window.location.href = "/login";
+      // window.location.href = "/login";
     }
     return Promise.reject(error);
   }
