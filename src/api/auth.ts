@@ -11,6 +11,11 @@ export async function loginApi(data: LoginFormValues) {
   const response = await axiosPrivate.post("/users/login", data);
   return response.data;
 }
+// this function is used to get all the infos of the current user and also used for persistent login
+export async function getMeApi() {
+  const response = await axiosPrivate.get("/users/me");
+  return response.data.data;
+}
 
 export function useSignup() {
   return useMutation({
@@ -27,6 +32,7 @@ export function useLogin() {
     onError: (error) => console.log("Error:", error),
   });
 }
+
 // export function logout() {
 //   return axios.post("/auth/logout");
 // }

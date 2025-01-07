@@ -25,8 +25,14 @@ import {
 import { useSignup } from "@/api/auth";
 import { SignUpFormValues, signupSchema } from "@/lib/types";
 import { handleError } from "@/lib/utils";
+import { useAuth } from "@/context/AuthProvider";
 
 export default function SignUp() {
+  const { user, loading, error: e } = useAuth();
+
+  console.log("current user", user);
+  console.log({ e });
+
   const { isError, mutate: signup, isPending, error } = useSignup();
   const form = useForm<SignUpFormValues>({
     resolver: zodResolver(signupSchema),
