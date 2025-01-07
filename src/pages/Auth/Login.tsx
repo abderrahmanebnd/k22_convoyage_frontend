@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { LoginFormValues, loginSchema } from "@/lib/types";
-import { useLogin } from "@/api/auth";
+import { useLogin } from "@/features/Auth/api/auth";
 import { handleError } from "@/lib/utils";
 
 export default function Login() {

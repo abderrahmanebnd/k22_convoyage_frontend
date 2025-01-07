@@ -1,5 +1,5 @@
 import axiosPrivate from "./axios";
-import { LoginFormValues, SignUpFormValues } from "../lib/types";
+import { LoginFormValues, SignUpFormValues } from "../../../lib/types";
 import { useMutation } from "@tanstack/react-query";
 
 export async function signupApi(data: SignUpFormValues) {

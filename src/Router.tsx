@@ -5,8 +5,8 @@ import Contact from "./pages/Homepage/Contact";
 import HomepageLayout from "./ui/layouts/HomepageLayout";
 import About from "./pages/Homepage/About";
 import OurPrices from "./pages/Homepage/OurPrices";
-import Login from "@/pages/Login";
-import SignUp from "@/pages/Signup";
+import Login from "@/pages/Auth/Login";
+import SignUp from "@/pages/Auth/Signup";
 import { AuthProvider } from "./context/AuthProvider";
 
 export default function Router(): JSX.Element {

@@ -22,7 +22,7 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
-import { useSignup } from "@/api/auth";
+import { useSignup } from "@/features/Auth/api/auth";
 import { SignUpFormValues, signupSchema } from "@/lib/types";
 import { handleError } from "@/lib/utils";
 import { useAuth } from "@/context/AuthProvider";
