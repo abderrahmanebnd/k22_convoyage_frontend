@@ -8,7 +8,7 @@ interface User {
   _id: string;
   name: string;
   email: string;
-  role: string;
+  role: "admin" | "client" | "driver";
 }
 
 interface AuthContextType {
