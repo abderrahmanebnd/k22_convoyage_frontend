@@ -9,9 +9,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Link } from "react-router-dom";
-import AuthHeader from "@/ui/AuthHeader";
+import AuthHeader from "@/features/Auth/api/AuthHeader";
 import { SplitLayout } from "@/ui/layouts/SplitLayout";
-import CustomButton from "@/ui/CustomButton";
+import CustomButton from "@/ui/common/CustomButton";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {

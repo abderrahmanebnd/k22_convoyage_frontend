@@ -1,5 +1,5 @@
-import ContactOrder from "@/ui/ContactOrder";
-import CustomTitle from "@/ui/CustomTitle";
+import ContactOrder from "@/features/Homepage/ContactOrder";
+import CustomTitle from "@/ui/common/CustomTitle";
 
 export default function About() {
   return (

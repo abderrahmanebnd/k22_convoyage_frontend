@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import CustomTitle from "../../ui/CustomTitle";
+import CustomTitle from "../../ui/common/CustomTitle";
 
 const accordionItems: { ques: string; ans: string }[] = [
   {

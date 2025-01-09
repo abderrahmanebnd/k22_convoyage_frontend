@@ -1,4 +1,4 @@
-import CustomButton from "@/ui/CustomButton";
+import CustomButton from "@/ui/common/CustomButton";
 
 export default function Homepage() {
   return (

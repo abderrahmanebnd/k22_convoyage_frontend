@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import CustomButton from "../../ui/CustomButton";
+import CustomButton from "../../ui/common/CustomButton";
 import { ArrowUpRight } from "lucide-react";
-import CustomTitle from "../../ui/CustomTitle";
+import CustomTitle from "../../ui/common/CustomTitle";
 
 const infos: {
   title: string;

@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Logo from "@/ui/Logo";
-import CustomButton from "@/ui/CustomButton";
+import Logo from "@/ui/common/Logo";
+import CustomButton from "@/ui/common/CustomButton";
 import { LogIn, MenuIcon } from "lucide-react";
 import {
   Sheet,

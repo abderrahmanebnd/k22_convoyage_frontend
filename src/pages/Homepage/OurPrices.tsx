@@ -1,5 +1,5 @@
-import ContactOrder from "@/ui/ContactOrder";
-import CustomTitle from "@/ui/CustomTitle";
+import ContactOrder from "@/features/Homepage/ContactOrder";
+import CustomTitle from "@/ui/common/CustomTitle";
 
 const data: { title: string; text: string; imgSrc: string }[] = [
   {

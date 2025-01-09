@@ -1,5 +1,5 @@
-import ContactOrder from "@/ui/ContactOrder";
-import CustomTitle from "@/ui/CustomTitle";
+import ContactOrder from "@/features/Homepage/ContactOrder";
+import CustomTitle from "@/ui/common/CustomTitle";
 import { Quote } from "lucide-react";
 
 const testimonials: { name: string; text: string }[] = [

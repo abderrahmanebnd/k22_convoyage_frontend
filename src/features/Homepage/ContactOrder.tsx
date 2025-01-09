@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import CustomButton from "./CustomButton";
+import CustomButton from "@/ui/common/CustomButton";
 
 export default function ContactOrder({
   title,

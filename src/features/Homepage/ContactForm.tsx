@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import CustomButton from "@/ui/CustomButton";
-import CustomTitle from "@/ui/CustomTitle";
+import CustomButton from "@/ui/common/CustomButton";
+import CustomTitle from "@/ui/common/CustomTitle";
 import { Label } from "@radix-ui/react-label";
 
 export default function ContactForm() {
