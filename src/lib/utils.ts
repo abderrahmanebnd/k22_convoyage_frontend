@@ -7,7 +7,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const handleError = (error: unknown) => {
-  if (error instanceof AxiosError) return error.response?.data.message;
+  if (error instanceof AxiosError)
+    return error.response?.data.message || "Something went wrong, Try Later!";
   else if (error instanceof Error) return error.message;
   else return "Something went wrong, Try Later!";
 };

@@ -11,6 +11,9 @@ import { AuthProvider } from "./context/AuthProvider";
 import PageNotFound from "./pages/PageNotFound";
 import ProtectedRoute from "./pages/Auth/ProtectedRoute";
 import GuestRoute from "./pages/Auth/GuestRoute";
+import DashboardLayout from "./ui/layouts/DashboardLayout";
+import ContactForm from "./features/Homepage/ContactForm";
+import { Main } from "./components/ui/main";
 
 export default function Router(): JSX.Element {
   return (
@@ -25,57 +28,85 @@ export default function Router(): JSX.Element {
           <Route path="/contact" element={<Contact />} />
         </Route>
         {/* Landing Page */}
-
         <Route element={<GuestRoute />}>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
         </Route>
-
         {/* Protected Routes with Role-Based Access */}
-        <Route element={<ProtectedRoute roles={["admin"]} />}>
-          <Route path="/admin" element={<AdminPage />} />
-        </Route>
-        <Route element={<ProtectedRoute roles={["client"]} />}>
-          <Route path="/client" element={<ClientPage />} />
-        </Route>
+        {/* <Route element={<DashboardLayout />}>
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute roles={["admin"]}>
+                <ContactForm />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/missions"
+            element={
+              <ProtectedRoute roles={["admin"]}>
+                <ContactForm />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <ProtectedRoute roles={["admin"]}>
+                <ContactForm />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/search"
+            element={
+              <ProtectedRoute roles={["client"]}>
+                <ContactForm />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/my-missions"
+            element={
+              <ProtectedRoute roles={["driver"]}>
+                <ContactForm />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute roles={["admin", "client", "driver"]}>
+                <ContactForm />
+              </ProtectedRoute>
+            }
+          />
+        </Route> */}
         <Route element={<ProtectedRoute roles={["driver"]} />}>
-          <Route path="/driver" element={<DriverPage />} />
+          <Route element={<DashboardLayout />}>
+            {/* <Route path="/dashboard" element={<ContactForm />} /> */}
+            <Route path="/my-missions" element={<ContactForm />} />
+            {/* <Route path="/users" element={<ContactForm />} /> */}
+            {/* <Route path="/search" element={<ContactForm />} /> */}
+            {/* <Route path="/my-missions" element={<ContactForm />} /> */}
+            <Route path="/profile" element={<ContactForm />} />
+          </Route>
         </Route>
 
-        {/* Page Not Found */}
-        <Route path="/dashboard" element={<PageNotFound />} />
+        <Route element={<ProtectedRoute roles={["client"]} />}>
+          <Route element={<DashboardLayout />}>
+            {/* <Route path="/dashboard" element={<ContactForm />} /> */}
+            {/* <Route path="/missions" element={<ContactForm />} /> */}
+            {/* <Route path="/users" element={<ContactForm />} /> */}
+            <Route path="/search" element={<ContactForm />} />
+            {/* <Route path="/my-missions" element={<ContactForm />} /> */}
+            <Route path="/profile" element={<ContactForm />} />
+          </Route>
+        </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </AuthProvider>
-  );
-}
-
-// AdminPage.tsx
-export function AdminPage() {
-  return (
-    <div>
-      <h1>Welcome Admin!</h1>
-      <p>You have full access to this page.</p>
-    </div>
-  );
-}
-
-// ClientPage.tsx
-export function ClientPage() {
-  return (
-    <div>
-      <h1>Welcome Client!</h1>
-      <p>You have access to the client features.</p>
-    </div>
-  );
-}
-
-// DriverPage.tsx
-export function DriverPage() {
-  return (
-    <div>
-      <h1>Welcome Driver!</h1>
-      <p>You have access to the driver features.</p>
-    </div>
   );
 }
