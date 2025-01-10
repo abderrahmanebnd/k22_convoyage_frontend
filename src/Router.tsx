@@ -13,7 +13,7 @@ import ProtectedRoute from "./pages/Auth/ProtectedRoute";
 import GuestRoute from "./pages/Auth/GuestRoute";
 import DashboardLayout from "./ui/layouts/DashboardLayout";
 import ContactForm from "./features/Homepage/ContactForm";
-import { Main } from "./components/ui/main";
+import ContactOrder from "./features/Homepage/ContactOrder";
 
 export default function Router(): JSX.Element {
   return (
@@ -32,78 +32,29 @@ export default function Router(): JSX.Element {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
         </Route>
-        {/* Protected Routes with Role-Based Access */}
-        {/* <Route element={<DashboardLayout />}>
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute roles={["admin"]}>
-                <ContactForm />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/missions"
-            element={
-              <ProtectedRoute roles={["admin"]}>
-                <ContactForm />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/users"
-            element={
-              <ProtectedRoute roles={["admin"]}>
-                <ContactForm />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/search"
-            element={
-              <ProtectedRoute roles={["client"]}>
-                <ContactForm />
-              </ProtectedRoute>
-            }
-          />
+        <Route
+          element={
+            <ProtectedRoute roles={["driver"]}>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route
             path="/my-missions"
-            element={
-              <ProtectedRoute roles={["driver"]}>
-                <ContactForm />
-              </ProtectedRoute>
-            }
+            element={<ContactOrder title="ff" text="fff" buttonText="win " />}
           />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute roles={["admin", "client", "driver"]}>
-                <ContactForm />
-              </ProtectedRoute>
-            }
-          />
-        </Route> */}
-        <Route element={<ProtectedRoute roles={["driver"]} />}>
-          <Route element={<DashboardLayout />}>
-            {/* <Route path="/dashboard" element={<ContactForm />} /> */}
-            <Route path="/my-missions" element={<ContactForm />} />
-            {/* <Route path="/users" element={<ContactForm />} /> */}
-            {/* <Route path="/search" element={<ContactForm />} /> */}
-            {/* <Route path="/my-missions" element={<ContactForm />} /> */}
-            <Route path="/profile" element={<ContactForm />} />
-          </Route>
+          <Route path="/profile" element={<ContactForm />} />
         </Route>
 
-        <Route element={<ProtectedRoute roles={["client"]} />}>
-          <Route element={<DashboardLayout />}>
-            {/* <Route path="/dashboard" element={<ContactForm />} /> */}
-            {/* <Route path="/missions" element={<ContactForm />} /> */}
-            {/* <Route path="/users" element={<ContactForm />} /> */}
-            <Route path="/search" element={<ContactForm />} />
-            {/* <Route path="/my-missions" element={<ContactForm />} /> */}
-            <Route path="/profile" element={<ContactForm />} />
-          </Route>
+        <Route
+          element={
+            <ProtectedRoute roles={["client"]}>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="/search" element={<ContactForm />} />
+          <Route path="/profile" element={<ContactForm />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

@@ -1,27 +1,27 @@
 import { useAuth } from "@/context/AuthProvider";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
-import { ReactNode, useEffect } from "react";
+import { Navigate } from "react-router-dom";
+import { ReactNode } from "react";
 
 export default function ProtectedRoute({
   roles,
   children,
 }: {
   roles: ("admin" | "client" | "driver")[];
-  children?: ReactNode;
+  children: ReactNode;
 }) {
-  const { user, loading, error } = useAuth();
+  const { user, loading } = useAuth();
 
   // useEffect(() => {
   if (loading) return;
 
   if (!user) {
-    <Navigate to="/login" replace />;
+    return <Navigate to="/login" replace />;
   } else if (!roles.includes(user?.role)) {
-    <Navigate to="/not-found" replace />;
+    return <Navigate to="/not-found" replace />;
   }
   // }, [user, loading, error, navigate, roles]);
 
   if (loading) return <div>Loading...</div>;
 
-  return <Outlet />;
+  return children;
 }
