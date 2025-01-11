@@ -13,7 +13,7 @@ import ProtectedRoute from "./pages/Auth/ProtectedRoute";
 import GuestRoute from "./pages/Auth/GuestRoute";
 import DashboardLayout from "./ui/layouts/DashboardLayout";
 import ContactForm from "./features/Homepage/ContactForm";
-import ContactOrder from "./features/Homepage/ContactOrder";
+import { Main } from "./components/ui/main";
 
 export default function Router(): JSX.Element {
   return (
@@ -32,6 +32,58 @@ export default function Router(): JSX.Element {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
         </Route>
+        {/* Protected Routes with Role-Based Access */}
+        {/* <Route element={<DashboardLayout />}>
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute roles={["admin"]}>
+                <ContactForm />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/missions"
+            element={
+              <ProtectedRoute roles={["admin"]}>
+                <ContactForm />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <ProtectedRoute roles={["admin"]}>
+                <ContactForm />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/search"
+            element={
+              <ProtectedRoute roles={["client"]}>
+                <ContactForm />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/my-missions"
+            element={
+              <ProtectedRoute roles={["driver"]}>
+                <ContactForm />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute roles={["admin", "client", "driver"]}>
+                <ContactForm />
+              </ProtectedRoute>
+            }
+          />
+        </Route> */}
         <Route
           element={
             <ProtectedRoute roles={["driver"]}>
@@ -39,10 +91,7 @@ export default function Router(): JSX.Element {
             </ProtectedRoute>
           }
         >
-          <Route
-            path="/my-missions"
-            element={<ContactOrder title="ff" text="fff" buttonText="win " />}
-          />
+          <Route path="/my-missions" element={<ContactForm />} />
           <Route path="/profile" element={<ContactForm />} />
         </Route>
 

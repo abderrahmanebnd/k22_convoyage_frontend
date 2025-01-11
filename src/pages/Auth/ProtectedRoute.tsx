@@ -1,5 +1,5 @@
 import { useAuth } from "@/context/AuthProvider";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { ReactNode } from "react";
 
 export default function ProtectedRoute({
