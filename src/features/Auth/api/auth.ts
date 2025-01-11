@@ -1,6 +1,7 @@
 import axiosPrivate from "./axios";
 import { LoginFormValues, SignUpFormValues } from "../../../lib/types";
 import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 export async function signupApi(data: SignUpFormValues) {
   const response = await axiosPrivate.post("/users/signup", data);
@@ -26,9 +27,18 @@ export function useSignup() {
 }
 
 export function useLogin() {
+  const navigate = useNavigate();
   return useMutation({
     mutationFn: loginApi,
-    onSuccess: (data) => console.log(data),
+    onSuccess: (user) => {
+      navigate(
+        user?.role === "admin"
+          ? "/dashboard"
+          : user?.role === "client"
+          ? "/search"
+          : "/missions"
+      );
+    },
     onError: (error) => console.log("Error:", error),
   });
 }

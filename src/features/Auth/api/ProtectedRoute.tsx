@@ -1,6 +1,7 @@
 import { useAuth } from "@/context/AuthProvider";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { ReactNode } from "react";
+import Loader from "@/ui/common/Loader";
 
 export default function ProtectedRoute({
   roles,
@@ -12,7 +13,7 @@ export default function ProtectedRoute({
   const { user, loading } = useAuth();
 
   // useEffect(() => {
-  if (loading) return;
+  if (loading) return <Loader />;
 
   if (!user) {
     return <Navigate to="/login" replace />;
@@ -20,8 +21,6 @@ export default function ProtectedRoute({
     return <Navigate to="/not-found" replace />;
   }
   // }, [user, loading, error, navigate, roles]);
-
-  if (loading) return <div>Loading...</div>;
 
   return children;
 }

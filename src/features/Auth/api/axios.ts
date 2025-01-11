@@ -1,3 +1,4 @@
+import { displayErrorToast } from "@/ui/common/CustomAlert";
 import axios from "axios";
 
 const axiosPrivate = axios.create({
@@ -13,6 +14,8 @@ axiosPrivate.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       // Handle automatic logout
+      displayErrorToast("Veuillez vous reconnecter, votre session a expiré !");
+      console.log(error);
       // window.location.href = "/login";
     }
     return Promise.reject(error);

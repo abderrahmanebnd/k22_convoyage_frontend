@@ -9,11 +9,11 @@ import Login from "@/pages/Auth/Login";
 import SignUp from "@/pages/Auth/Signup";
 import { AuthProvider } from "./context/AuthProvider";
 import PageNotFound from "./pages/PageNotFound";
-import ProtectedRoute from "./pages/Auth/ProtectedRoute";
-import GuestRoute from "./pages/Auth/GuestRoute";
+import ProtectedRoute from "./features/Auth/api/ProtectedRoute";
+import GuestRoute from "./features/Auth/api/GuestRoute";
 import DashboardLayout from "./ui/layouts/DashboardLayout";
 import ContactForm from "./features/Homepage/ContactForm";
-import { Main } from "./components/ui/main";
+import Dashboard from "./pages/Admin/Dashboard";
 
 export default function Router(): JSX.Element {
   return (
@@ -32,58 +32,19 @@ export default function Router(): JSX.Element {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
         </Route>
-        {/* Protected Routes with Role-Based Access */}
-        {/* <Route element={<DashboardLayout />}>
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute roles={["admin"]}>
-                <ContactForm />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/missions"
-            element={
-              <ProtectedRoute roles={["admin"]}>
-                <ContactForm />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/users"
-            element={
-              <ProtectedRoute roles={["admin"]}>
-                <ContactForm />
-              </ProtectedRoute>
-            }
-          />
 
-          <Route
-            path="/search"
-            element={
-              <ProtectedRoute roles={["client"]}>
-                <ContactForm />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/my-missions"
-            element={
-              <ProtectedRoute roles={["driver"]}>
-                <ContactForm />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute roles={["admin", "client", "driver"]}>
-                <ContactForm />
-              </ProtectedRoute>
-            }
-          />
-        </Route> */}
+        <Route
+          element={
+            <ProtectedRoute roles={["admin"]}>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/users" element={<ContactForm />} />
+          <Route path="/missions" element={<ContactForm />} />
+          <Route path="/profile" element={<ContactForm />} />
+        </Route>
         <Route
           element={
             <ProtectedRoute roles={["driver"]}>

@@ -1,4 +1,4 @@
-import ProtectedRoute from "@/pages/Auth/ProtectedRoute";
+import ProtectedRoute from "@/features/Auth/api/ProtectedRoute";
 import { ReactNode } from "react";
 import { Route } from "react-router-dom";
 
