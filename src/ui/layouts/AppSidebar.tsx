@@ -16,8 +16,13 @@ import {
 import { useAuth } from "@/context/AuthProvider";
 import { SidebarData } from "@/lib/types";
 import MiniLoader from "../common/MiniLoader";
+import { DialogTitle } from "@radix-ui/react-dialog";
+import CustomButton from "../common/CustomButton";
+import { useNavigate } from "react-router-dom";
+import { IconChecklist, IconCheckupList } from "@tabler/icons-react";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const navigate = useNavigate();
   const { user, loading } = useAuth();
 
   let sidebarData: SidebarData;
@@ -28,10 +33,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         : user?.role === "client"
         ? sidebarDataClient
         : sidebarDataDriver;
+
   return (
     <Sidebar variant="floating" {...props}>
       <SidebarHeader>
-        <p className="text-main text-lg">K22Transport</p>
+        <h1 className="text-main font-semibold text-xl text-center mb-3">
+          K22Transport
+        </h1>
+        <CustomButton
+          primary
+          className="mx-1 text-base"
+          onClick={() => navigate("/missions")}
+        >
+          <IconChecklist size={20} />
+          Create mission
+        </CustomButton>
       </SidebarHeader>
       <SidebarContent>
         {loading ? (

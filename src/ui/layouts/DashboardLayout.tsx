@@ -19,7 +19,7 @@ export default function DashboardLayout() {
           "transition-[width] ease-linear duration-200",
           "h-vh flex flex-col",
           "group-data-[scroll-locked=1]/body:h-full",
-          "group-data-[scroll-locked=1]/body:has-[main.fixed-main]:h-svh"
+          "group-data-[scroll-locked=1]/body:has-[main.fixed-main]:h-svh  "
         )}
       >
         <Outlet />

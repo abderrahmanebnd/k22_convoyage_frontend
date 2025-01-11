@@ -24,7 +24,7 @@ export default function CustomButton({
       className={cn(
         `border-slate-3 text-lg py-5 px-3 hover:bg-main hover:bg-opacity-90 hover:text-white transition-colors duration-200 text-black border-stroke border shadow-sm rounded-xl disabled:cursor-not-allowed disabled:bg-slate-3 disabled:text-slate-8 disabled:border-slate-3`,
         primary
-          ? "bg-main border-none rounded-md capitalize text-white hover:bg-opacity-95"
+          ? "bg-main border-none rounded-xl capitalize text-white hover:bg-opacity-95"
           : "",
         className
       )}
