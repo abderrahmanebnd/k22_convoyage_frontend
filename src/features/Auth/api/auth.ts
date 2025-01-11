@@ -27,18 +27,18 @@ export function useSignup() {
 }
 
 export function useLogin() {
-  const navigate = useNavigate();
   return useMutation({
     mutationFn: loginApi,
-    onSuccess: (user) => {
-      navigate(
-        user?.role === "admin"
-          ? "/dashboard"
-          : user?.role === "client"
-          ? "/search"
-          : "/missions"
-      );
-    },
+    // onSuccess: (data) => {
+    //   console.log(data.data.user?.role);
+    //   navigate(
+    //     data.data.user?.role === "admin"
+    //       ? "/dashboard"
+    //       : data.data.user?.role === "client"
+    //       ? "/search"
+    //       : "/my-missions"
+    //   );
+    // },
     onError: (error) => console.log("Error:", error),
   });
 }

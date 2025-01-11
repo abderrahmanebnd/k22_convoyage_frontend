@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   } = useQuery<User, Error>({
     queryKey: ["authCheck"],
     queryFn: getMeApi,
-    retry: 1,
+    retry: false,
   });
   return (
     <AuthContext.Provider

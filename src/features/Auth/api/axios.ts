@@ -14,8 +14,8 @@ axiosPrivate.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       // Handle automatic logout
-      displayErrorToast("Veuillez vous reconnecter, votre session a expiré !");
-      console.log(error);
+      // displayErrorToast("Veuillez vous reconnecter, votre session a expiré !");
+      // console.log(error);
       // window.location.href = "/login";
     }
     return Promise.reject(error);

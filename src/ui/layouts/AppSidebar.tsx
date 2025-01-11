@@ -15,6 +15,7 @@ import {
 } from "@/data/sidebarData";
 import { useAuth } from "@/context/AuthProvider";
 import { SidebarData } from "@/lib/types";
+import MiniLoader from "../common/MiniLoader";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { user, loading } = useAuth();
@@ -34,7 +35,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         {loading ? (
-          <p>Loading...</p>
+          <MiniLoader />
         ) : (
           sidebarData.navGroups.map((props) => (
             <NavGroup key={props.title} {...props} />

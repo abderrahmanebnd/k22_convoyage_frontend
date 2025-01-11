@@ -1,7 +1,7 @@
 import { ArrowLeft, Lock, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthHeader from "@/features/Auth/api/AuthHeader";
 import { SplitLayout } from "@/ui/layouts/SplitLayout";
 import CustomButton from "@/ui/common/CustomButton";
@@ -18,8 +18,10 @@ import {
 import { LoginFormValues, loginSchema } from "@/lib/types";
 import { useLogin } from "@/features/Auth/api/auth";
 import { handleError } from "@/lib/utils";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function Login() {
+  const navigate = useNavigate();
   const { mutate: login, isError, isPending, error } = useLogin();
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -28,9 +30,21 @@ export default function Login() {
       password: "",
     },
   });
+  const queryClient = useQueryClient();
 
   const onSubmit = (data: LoginFormValues) => {
-    login(data);
+    login(data, {
+      onSuccess: (data) => {
+        queryClient.invalidateQueries();
+        navigate(
+          data.data.user.role === "admin"
+            ? "/dashboard"
+            : data.data.user.role === "client"
+            ? "/search"
+            : "/my-missions"
+        );
+      },
+    });
   };
 
   return (
