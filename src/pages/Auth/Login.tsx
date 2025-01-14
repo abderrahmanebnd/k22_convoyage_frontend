@@ -16,9 +16,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { LoginFormValues, loginSchema } from "@/lib/types";
-import { useLogin } from "@/features/Auth/api/auth";
 import { handleError } from "@/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
+import { useLogin } from "@/services/auth";
 
 export default function Login() {
   const navigate = useNavigate();

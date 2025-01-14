@@ -1,7 +1,7 @@
 import { createContext, useContext, ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getMeApi } from "@/features/Auth/api/auth";
 import { handleError } from "@/lib/utils";
+import { getMeApi } from "@/services/auth";
 
 // Define the user type (adjust based on your actual user model)
 interface User {

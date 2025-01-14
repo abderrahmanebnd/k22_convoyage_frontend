@@ -1,22 +1,9 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Header } from "@/components/ui/header";
 import { Main } from "@/components/ui/main";
-import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { ProfileDropdown } from "@/ui/common/ProfileDropdown";
 import { ThemeSwitch } from "@/ui/common/ThemeSwitch";
-import {
-  IconCar,
-  IconChecklist,
-  IconSubtask,
-  IconTableSpark,
-  IconUsers,
-} from "@tabler/icons-react";
+import { IconChecklist, IconUsers } from "@tabler/icons-react";
 import { Truck } from "lucide-react";
 
 export default function Dashboard() {

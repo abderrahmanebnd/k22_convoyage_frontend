@@ -22,17 +22,11 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
-import { useSignup } from "@/features/Auth/api/auth";
 import { SignUpFormValues, signupSchema } from "@/lib/types";
 import { handleError } from "@/lib/utils";
-import { useAuth } from "@/context/AuthProvider";
+import { useSignup } from "@/services/auth";
 
 export default function SignUp() {
-  const { user, loading, error: e } = useAuth();
-
-  console.log("current user", user);
-  console.log({ e });
-
   const { isError, mutate: signup, isPending, error } = useSignup();
   const form = useForm<SignUpFormValues>({
     resolver: zodResolver(signupSchema),
