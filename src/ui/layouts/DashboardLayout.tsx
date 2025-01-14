@@ -2,10 +2,12 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { Outlet } from "react-router-dom";
 import { AppSidebar } from "./AppSidebar";
+import { ThemeProvider } from "@/context/ThemeProvider";
 
 export default function DashboardLayout() {
   //   const defaultOpen = Cookies.get("sidebar:state") !== "false";
   return (
+    // <ThemeProvider>
     <SidebarProvider defaultOpen={true}>
       {/* <SkipToMain /> */}
       {/* <p>hello</p> */}
@@ -25,5 +27,6 @@ export default function DashboardLayout() {
         <Outlet />
       </div>
     </SidebarProvider>
+    // </ThemeProvider>
   );
 }
