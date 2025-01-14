@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   //   const [user, setUser] = useState<User | null>(null);
   const {
     data: user,
-    isLoading,
+    isPending,
     error,
   } = useQuery<User, Error>({
     queryKey: ["authCheck"],
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     <AuthContext.Provider
       value={{
         user: user || null,
-        loading: isLoading,
+        loading: isPending,
         error: error ? handleError(error) : null,
         //   setUser: ,
       }}

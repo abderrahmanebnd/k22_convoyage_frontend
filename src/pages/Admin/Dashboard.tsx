@@ -1,12 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Header } from "@/components/ui/header";
 import { Main } from "@/components/ui/main";
+import { useStats } from "@/services/getStats";
+import MiniLoader from "@/ui/common/MiniLoader";
 import { ProfileDropdown } from "@/ui/common/ProfileDropdown";
 import { ThemeSwitch } from "@/ui/common/ThemeSwitch";
 import { IconChecklist, IconUsers } from "@tabler/icons-react";
 import { Truck } from "lucide-react";
 
 export default function Dashboard() {
+  const { stats, loading } = useStats();
+
   return (
     <>
       <Header>
@@ -32,7 +36,7 @@ export default function Dashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold text-black">
-                    $45,231.89
+                    {loading ? <MiniLoader /> : stats?.totalChauffeurs}
                   </div>
                   {/* <p className="text-xs text-muted-foreground">
                     +20.1% from last month
@@ -45,7 +49,10 @@ export default function Dashboard() {
                   <IconUsers size={20} className=" text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-black">+2350</div>
+                  <div className="text-2xl font-bold text-black">
+                    {" "}
+                    {loading ? <MiniLoader /> : stats?.totalClients}
+                  </div>
                   {/* <p className="text-xs text-muted-foreground">
                     +180.1% from last month
                   </p> */}
@@ -59,8 +66,17 @@ export default function Dashboard() {
                   <IconChecklist size={20} className=" text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-black">+12,234</div>
-                  <p className="text-xs text-muted-foreground">+19% Complété</p>
+                  <div className="text-2xl font-bold text-black">
+                    {" "}
+                    {loading ? <MiniLoader /> : stats?.totalMissions}
+                  </div>{" "}
+                  {loading ? (
+                    <MiniLoader />
+                  ) : (
+                    <span className="text-xs text-muted-foreground text-green-500 bg-green-100 py-1 px-2 rounded-xl font-semibold">
+                      {stats?.completedMissions} Complété
+                    </span>
+                  )}{" "}
                 </CardContent>
               </Card>
             </div>
