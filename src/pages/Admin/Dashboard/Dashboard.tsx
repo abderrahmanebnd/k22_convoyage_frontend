@@ -73,7 +73,7 @@ export default function Dashboard() {
                   {loading ? (
                     <MiniLoader />
                   ) : (
-                    <span className="text-xs text-muted-foreground text-green-500 bg-green-100 py-1 px-2 rounded-xl font-semibold">
+                    <span className="text-xs text-muted-foreground text-green-600 bg-green-100 py-1 px-2 rounded-xl font-semibold">
                       {stats?.completedMissions} Complété
                     </span>
                   )}{" "}

@@ -13,7 +13,8 @@ import ProtectedRoute from "./features/Auth/api/ProtectedRoute";
 import GuestRoute from "./features/Auth/api/GuestRoute";
 import DashboardLayout from "./ui/layouts/DashboardLayout";
 import ContactForm from "./features/Homepage/ContactForm";
-import Dashboard from "./pages/Admin/Dashboard";
+import Dashboard from "./pages/Admin/Dashboard/Dashboard";
+import Missions from "./pages/Admin/Missions/Missions";
 
 export default function Router(): JSX.Element {
   return (
@@ -42,7 +43,7 @@ export default function Router(): JSX.Element {
         >
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/users" element={<ContactForm />} />
-          <Route path="/missions" element={<ContactForm />} />
+          <Route path="/missions" element={<Missions />} />
           <Route path="/profile" element={<ContactForm />} />
         </Route>
         <Route

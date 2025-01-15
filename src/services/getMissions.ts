@@ -4,7 +4,7 @@ import axiosPrivate from "./axios";
 export type Mission = {
   _id: string;
   title: string;
-  status: "completed" | "in_progress" | "canceled";
+  status: "completed" | "in_progress" | "cancelled";
   assignedDriver: {
     _id: string;
     name: string;
@@ -14,20 +14,18 @@ export type Mission = {
 };
 
 // this for the admin
-export async function getMissions(params: unknown) {
-  const response = await axiosPrivate.get("/missions", {
-    params: params,
-  });
+export async function getMissions() {
+  const response = await axiosPrivate.get("/missions");
   return response.data.missions;
 }
-export function useMissions(params: unknown) {
+export function useMissions() {
   const {
     data: missions,
     isPending: loading,
     error,
   } = useQuery<Mission, Error>({
-    queryKey: ["missions", params],
-    queryFn: (params) => getMissions(params),
+    queryKey: ["missions"],
+    queryFn: () => getMissions(),
   });
 
   return {
