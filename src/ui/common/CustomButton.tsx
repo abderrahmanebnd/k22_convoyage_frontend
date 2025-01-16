@@ -1,26 +1,20 @@
-import { Button } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/button"; // Ensure ButtonProps is exported from your Button component
 import { cn } from "@/lib/utils";
+
+type CustomButtonProps = ButtonProps & {
+  primary?: boolean; // Additional custom prop
+};
 
 export default function CustomButton({
   children,
   className,
   type = "button",
   primary = false,
-  disabled = false,
-  onClick,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  type?: "button" | "submit" | "reset";
-  disabled?: boolean;
-  primary?: boolean;
-  onClick?: () => void;
-}) {
+  ...rest
+}: CustomButtonProps) {
   return (
     <Button
-      onClick={onClick}
       type={type}
-      disabled={disabled}
       className={cn(
         `border-slate-3 text-lg py-5 px-3 hover:bg-main hover:bg-opacity-90 hover:text-white transition-colors duration-200 text-black border-stroke border shadow-sm rounded-xl disabled:cursor-not-allowed disabled:bg-slate-3 disabled:text-slate-8 disabled:border-slate-3`,
         primary
@@ -28,6 +22,7 @@ export default function CustomButton({
           : "",
         className
       )}
+      {...rest} // Spread remaining props here
     >
       {children}
     </Button>
