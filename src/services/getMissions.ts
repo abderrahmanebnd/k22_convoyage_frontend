@@ -4,6 +4,7 @@ import axiosPrivate from "./axios";
 export type Mission = {
   _id: string;
   title: string;
+  description: string;
   status: "completed" | "in_progress" | "cancelled";
   assignedDriver: {
     _id: string;
@@ -11,6 +12,7 @@ export type Mission = {
     email: string;
   };
   carMatricule: string;
+  createdAt: string;
 };
 
 // this for the admin

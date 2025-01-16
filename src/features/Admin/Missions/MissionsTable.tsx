@@ -26,20 +26,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
-export type Mission = {
-  _id: string;
-  title: string;
-  description: string;
-  status: "completed" | "in_progress" | "cancelled";
-  assignedDriver: {
-    _id: string;
-    name: string;
-    email: string;
-  };
-  carMatricule: string;
-  createdAt: string;
-};
+import { Mission } from "@/services/getMissions";
+import { MissionTableRowActions } from "./MissionTableRowActions";
 
 export const columns: ColumnDef<Mission>[] = [
   {
@@ -100,44 +88,11 @@ export const columns: ColumnDef<Mission>[] = [
         {row.getValue("description")}
       </LongText>
     ),
-    // meta: {
-    //   className: cn(
-    //     "drop-shadow-[0_1px_2px_rgb(0_0_0_/_0.1)] dark:drop-shadow-[0_1px_2px_rgb(255_255_255_/_0.1)] lg:drop-shadow-none",
-    //     "bg-background transition-colors duration-200 group-hover/row:bg-muted group-data-[state=selected]/row:bg-muted",
-    //     "sticky left-6 md:table-cell"
-    //   ),
-    // },
+
     enableHiding: false,
     enableSorting: false,
   },
-  {
-    accessorKey: "assignedDriver.name",
-    id: "assignedDriverName",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Driver Name" />
-    ),
-    cell: ({ row }) => (
-      <LongText className="max-w-36">
-        {row.getValue("assignedDriverName")}
-      </LongText>
-    ),
-    enableHiding: false,
-    enableSorting: false,
-  },
-  {
-    accessorKey: "assignedDriver.email",
-    id: "assignedDriverEmail",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Driver Email" />
-    ),
-    cell: ({ row }) => (
-      <div className="w-fit text-wrap">
-        {row.getValue("assignedDriverEmail")}
-      </div>
-    ),
-    enableHiding: false,
-    enableSorting: false,
-  },
+
   {
     accessorKey: "status",
     header: ({ column }) => (
@@ -178,6 +133,34 @@ export const columns: ColumnDef<Mission>[] = [
     enableSorting: false,
   },
   {
+    accessorKey: "assignedDriver.name",
+    id: "assignedDriverName",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Driver Name" />
+    ),
+    cell: ({ row }) => (
+      <LongText className="max-w-36">
+        {row.getValue("assignedDriverName")}
+      </LongText>
+    ),
+    enableHiding: false,
+    enableSorting: false,
+  },
+  {
+    accessorKey: "assignedDriver.email",
+    id: "assignedDriverEmail",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Driver Email" />
+    ),
+    cell: ({ row }) => (
+      <div className="w-fit text-wrap">
+        {row.getValue("assignedDriverEmail")}
+      </div>
+    ),
+    enableHiding: false,
+    enableSorting: false,
+  },
+  {
     accessorKey: "createdAt",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Created At" />
@@ -191,7 +174,7 @@ export const columns: ColumnDef<Mission>[] = [
   },
   {
     id: "actions",
-    // cell: DataTableRowActions,
+    cell: MissionTableRowActions,
   },
 ];
 
