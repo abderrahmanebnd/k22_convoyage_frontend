@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axiosPrivate from "./axios";
+import axiosPrivate from "../axios";
 
 export type Mission = {
   _id: string;

@@ -10,7 +10,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Mission } from "@/services/getMissions";
+import { Mission } from "@/services/Missions/getMissions";
 import { useMissions } from "@/context/Admin/MissionsProvider";
 
 interface MissionTableRowActions {

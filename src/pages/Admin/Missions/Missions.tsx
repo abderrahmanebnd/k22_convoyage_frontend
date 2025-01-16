@@ -4,7 +4,7 @@ import MissionsProvider from "@/context/Admin/MissionsProvider";
 import MissionsTable, {
   columns,
 } from "@/features/Admin/Missions/MissionsTable";
-import { useMissions } from "@/services/getMissions";
+import { useMissions } from "@/services/Missions/getMissions";
 import Loader from "@/ui/common/Loader";
 import { ProfileDropdown } from "@/ui/common/ProfileDropdown";
 import { ThemeSwitch } from "@/ui/common/ThemeSwitch";
@@ -14,7 +14,6 @@ export default function Missions() {
   // Parse user list
   const { missions, loading, error } = useMissions();
 
-  console.log(missions);
   if (loading) {
     return <Loader />;
   }

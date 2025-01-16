@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IconAlertTriangle } from "@tabler/icons-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Mission } from "@/services/getMissions";
+
+import { Mission } from "@/services/Missions/getMissions";
 import { ConfirmDialog } from "@/ui/common/ConfirmDialog";
+import { useDeleteMission } from "@/services/Missions/deleteMissions";
+import { useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import {
+  displayErrorToast,
+  displaySuccessToast,
+} from "@/ui/common/CustomAlert";
 
 interface Props {
   open: boolean;
@@ -17,10 +23,22 @@ export function MissionsDeleteDialog({
   onOpenChange,
   currentRow,
 }: Props) {
-  const [value, setValue] = useState("");
-
+  const queryClient = useQueryClient();
+  const { mutate: deleteMission, isPending, isError } = useDeleteMission();
   const handleDelete = () => {
-    onOpenChange(false);
+    deleteMission(
+      { missionId: currentRow._id },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries("missions");
+          displaySuccessToast("supprimé avec succès");
+          onOpenChange(false);
+        },
+        onError: () => {
+          displayErrorToast();
+        },
+      }
+    );
   };
 
   return (
@@ -28,7 +46,7 @@ export function MissionsDeleteDialog({
       open={open}
       onOpenChange={onOpenChange}
       handleConfirm={handleDelete}
-      // disabled={value.trim() !== currentRow.title}
+      disabled={isPending}
       title={
         <span className="text-destructive">
           <IconAlertTriangle
@@ -49,9 +67,10 @@ export function MissionsDeleteDialog({
           </p>
 
           <Alert variant="destructive">
-            <AlertTitle>Warning!</AlertTitle>
+            <AlertTitle>Attention!</AlertTitle>
             <AlertDescription>
-              Please be carefull, this operation can not be rolled back.
+              Veuillez faire attention, cette opération ne peut pas être
+              annulée.
             </AlertDescription>
           </Alert>
         </div>

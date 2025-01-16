@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useDialogState from "@/hooks/useDialogState";
-import { Mission } from "@/services/getMissions";
+import { Mission } from "@/services/Missions/getMissions";
 
 type MissionsDialogType = "add" | "edit" | "delete";
 
@@ -20,9 +20,6 @@ interface Props {
 export default function MissionsProvider({ children }: Props) {
   const [open, setOpen] = useDialogState<MissionsDialogType>(null);
   const [currentRow, setCurrentRow] = useState<Mission | null>(null);
-
-  console.log({ open });
-  console.log("currentRow", currentRow);
 
   return (
     <MissionsContext.Provider

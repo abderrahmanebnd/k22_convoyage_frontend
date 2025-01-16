@@ -26,7 +26,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Mission } from "@/services/getMissions";
+import { Mission } from "@/services/Missions/getMissions";
 import { MissionTableRowActions } from "./MissionTableRowActions";
 
 export const columns: ColumnDef<Mission>[] = [
