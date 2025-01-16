@@ -1,5 +1,6 @@
 import { Header } from "@/components/ui/header";
 import { Main } from "@/components/ui/main";
+import MissionsProvider from "@/context/Admin/MissionsProvider";
 import MissionsTable, {
   columns,
 } from "@/features/Admin/Missions/MissionsTable";
@@ -7,6 +8,7 @@ import { useMissions } from "@/services/getMissions";
 import Loader from "@/ui/common/Loader";
 import { ProfileDropdown } from "@/ui/common/ProfileDropdown";
 import { ThemeSwitch } from "@/ui/common/ThemeSwitch";
+import { MissionsDialogs } from "./MissionsDialogs";
 
 export default function Missions() {
   // Parse user list
@@ -17,7 +19,7 @@ export default function Missions() {
     return <Loader />;
   }
   return (
-    <>
+    <MissionsProvider>
       <Header fixed>
         {/* <Search /> */}
         <div className="ml-auto flex items-center space-x-4">
@@ -43,7 +45,7 @@ export default function Missions() {
         </div>
       </Main>
 
-      {/* <UsersDialogs /> */}
-    </>
+      <MissionsDialogs />
+    </MissionsProvider>
   );
 }

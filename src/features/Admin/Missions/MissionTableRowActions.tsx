@@ -11,13 +11,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Mission } from "@/services/getMissions";
+import { useMissions } from "@/context/Admin/MissionsProvider";
 
 interface MissionTableRowActions {
   row: Row<Mission>;
 }
 
 export function MissionTableRowActions({ row }: MissionTableRowActions) {
-  const { setOpen, setCurrentRow } = useUsers();
+  const { setOpen, setCurrentRow } = useMissions();
   return (
     <>
       <DropdownMenu modal={false}>

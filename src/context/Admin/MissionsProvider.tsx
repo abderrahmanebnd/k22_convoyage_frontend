@@ -21,6 +21,9 @@ export default function MissionsProvider({ children }: Props) {
   const [open, setOpen] = useDialogState<MissionsDialogType>(null);
   const [currentRow, setCurrentRow] = useState<Mission | null>(null);
 
+  console.log({ open });
+  console.log("currentRow", currentRow);
+
   return (
     <MissionsContext.Provider
       value={{ open, setOpen, currentRow, setCurrentRow }}
@@ -38,5 +41,5 @@ export const useMissions = () => {
     throw new Error("useMissions has to be used within <MissionsProvider>");
   }
 
-  return MissionsContext;
+  return missionsContext;
 };
