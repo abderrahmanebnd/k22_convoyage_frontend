@@ -22,6 +22,7 @@ import { useLogin } from "@/services/auth";
 
 export default function Login() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { mutate: login, isError, isPending, error } = useLogin();
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -30,7 +31,6 @@ export default function Login() {
       password: "",
     },
   });
-  const queryClient = useQueryClient();
 
   const onSubmit = (data: LoginFormValues) => {
     login(data, {

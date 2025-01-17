@@ -8,7 +8,7 @@ import {
   SelectItem,
   SelectValue,
 } from "@/components/ui/select";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthHeader from "@/features/Auth/api/AuthHeader";
 import { SplitLayout } from "@/ui/layouts/SplitLayout";
 import CustomButton from "@/ui/common/CustomButton";
@@ -25,8 +25,11 @@ import {
 import { SignUpFormValues, signupSchema } from "@/lib/types";
 import { handleError } from "@/lib/utils";
 import { useSignup } from "@/services/auth";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function SignUp() {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { isError, mutate: signup, isPending, error } = useSignup();
   const form = useForm<SignUpFormValues>({
     resolver: zodResolver(signupSchema),
@@ -40,7 +43,18 @@ export default function SignUp() {
   });
 
   const onSubmit = (formData: SignUpFormValues) => {
-    signup(formData);
+    signup(formData, {
+      onSuccess: (data) => {
+        queryClient.invalidateQueries();
+        navigate(
+          data.data.user.role === "admin"
+            ? "/dashboard"
+            : data.data.user.role === "client"
+            ? "/search"
+            : "/my-missions"
+        );
+      },
+    });
   };
 
   return (
