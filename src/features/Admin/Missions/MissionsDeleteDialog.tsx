@@ -4,7 +4,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 import { Mission } from "@/services/Missions/getMissions";
 import { ConfirmDialog } from "@/ui/common/ConfirmDialog";
-import { useDeleteMission } from "@/services/Missions/deleteMissions";
+import { useDeleteMission } from "@/services/Missions/deleteMission";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import {
@@ -26,6 +26,10 @@ export function MissionsDeleteDialog({
   const queryClient = useQueryClient();
   const { mutate: deleteMission, isPending, isError } = useDeleteMission();
   const handleDelete = () => {
+    if (!currentRow?._id) {
+      displayErrorToast("Mission ID is missing.");
+      return;
+    }
     deleteMission(
       { missionId: currentRow._id },
       {

@@ -1,16 +1,28 @@
 import { useMissions } from "@/context/Admin/MissionsProvider";
 import { MissionsDeleteDialog } from "./MissionsDeleteDialog";
 import MissionsActionDialog from "./MissionsActionDialog";
+import { useEffect, useState } from "react";
 
 export function MissionsDialogs() {
   const { open, setOpen, currentRow, setCurrentRow } = useMissions();
+  const [openForAddition, setOpenForAddition] = useState(false);
+
+  console.log(openForAddition);
+  useEffect(() => {
+    if (open === "add") {
+      setOpenForAddition(true);
+    } else {
+      setOpenForAddition(false);
+    }
+  }, [open]);
+
   return (
     <>
-      {/* <MissionsActionDialog
+      <MissionsActionDialog
         key="mission-add"
-        open={open === "add"}
+        open={openForAddition}
         onOpenChange={() => setOpen("add")}
-      /> */}
+      />
 
       {currentRow && (
         <>

@@ -20,7 +20,7 @@ export async function getMissions() {
   const response = await axiosPrivate.get("/missions");
   return response.data.missions;
 }
-export function useMissions() {
+export function useGetMissions() {
   const {
     data: missions,
     isPending: loading,

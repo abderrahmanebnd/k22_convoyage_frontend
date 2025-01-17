@@ -30,6 +30,7 @@ import CustomButton from "@/ui/common/CustomButton";
 import { useDrivers } from "@/services/getDrivers";
 import { useUpdateMission } from "@/services/Missions/updateMission";
 import { useQueryClient } from "@tanstack/react-query";
+import { useCreateMission } from "@/services/Missions/createMission";
 
 const carMatriculeRegex = /^[A-HJ-NP-TV-Z]{2}-\d{3}-[A-HJ-NP-TV-Z]{2}$/;
 
@@ -37,11 +38,15 @@ const formSchema = z.object({
   title: z.string(),
   description: z.string(),
   status: z.enum(["completed", "in_progress", "cancelled"]),
-  assignedDriver: z.object({
-    _id: z.string(),
-    name: z.string(),
-    email: z.string().email(),
-  }),
+  assignedDriver: z
+    .object({
+      _id: z.string(),
+      name: z.string(),
+      email: z.string().email(),
+    })
+    .refine((driver) => driver._id && driver.name && driver.email, {
+      message: "Assigned driver is required",
+    }),
   carMatricule: z.string().regex(carMatriculeRegex, "Invalid matricule format"),
 });
 
@@ -61,8 +66,13 @@ export default function MissionsActionDialog({
 }: Props) {
   const { drivers, loading } = useDrivers();
   const { mutate: updateMission, isPending: updating } = useUpdateMission();
+  const { mutate: createMission, isPending: creating } = useCreateMission();
+
   const queryClient = useQueryClient();
   const isEdit = !!currentRow;
+  const disabled = updating || creating;
+
+  console.log(isEdit);
   const form = useForm<MissionForm>({
     resolver: zodResolver(formSchema),
     defaultValues: isEdit
@@ -79,29 +89,47 @@ export default function MissionsActionDialog({
   });
 
   const onSubmit = (values: MissionForm) => {
-    if (!currentRow?._id) {
-      displayErrorToast("Mission ID is missing.");
-      return;
-    }
-
     const payload = {
       ...values,
       assignedDriver: values.assignedDriver._id, // Replace assignedDriver with just the _id
     };
 
-    updateMission(
-      { missionId: currentRow._id, data: payload },
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries("missions"); // Refetch missions
-          displaySuccessToast("Édité avec succès"); // Show success toast
-          onOpenChange(false); // Close the modal
-        },
-        onError: (error: unknown) => {
-          displayErrorToast(); // Show error toast
-        },
+    // update session
+    if (isEdit) {
+      if (!currentRow?._id) {
+        displayErrorToast("Mission ID is missing.");
+        return;
       }
-    );
+      updateMission(
+        { missionId: currentRow._id, data: payload },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries("missions"); // Refetch missions
+            displaySuccessToast("Édité avec succès"); // Show success toast
+            onOpenChange(false); // Close the modal
+          },
+          onError: (error: unknown) => {
+            displayErrorToast(); // Show error toast
+          },
+        }
+      );
+    } else {
+      // create session
+      createMission(
+        { data: payload },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries("missions"); // Refetch missions
+            displaySuccessToast("Édité avec succès"); // Show success toast
+            form.reset();
+            onOpenChange(false); // Close the modal
+          },
+          onError: () => {
+            displayErrorToast("Vérifiez vos informations"); // Show error toast
+          },
+        }
+      );
+    }
   };
 
   return (
@@ -219,8 +247,13 @@ export default function MissionsActionDialog({
           </Form>
         </>
         <ResponsiveModalFooter>
-          <CustomButton primary type="submit" form="mission-form">
-            Save changes
+          <CustomButton
+            primary
+            type="submit"
+            form="mission-form"
+            disabled={disabled}
+          >
+            {isEdit ? "Enregistrer les modifications" : "Ajouter la mission"}
           </CustomButton>
         </ResponsiveModalFooter>
       </ResponsiveModalContent>

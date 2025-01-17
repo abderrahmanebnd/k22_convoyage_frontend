@@ -16,14 +16,14 @@ import {
 import { useAuth } from "@/context/AuthProvider";
 import { SidebarData } from "@/lib/types";
 import MiniLoader from "../common/MiniLoader";
-import { DialogTitle } from "@radix-ui/react-dialog";
 import CustomButton from "../common/CustomButton";
 import { useNavigate } from "react-router-dom";
-import { IconChecklist, IconCheckupList } from "@tabler/icons-react";
+import { IconChecklist } from "@tabler/icons-react";
+import { useMissions } from "@/context/Admin/MissionsProvider";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const navigate = useNavigate();
   const { user, loading } = useAuth();
+  const { setOpen, open } = useMissions();
 
   let sidebarData: SidebarData;
   if (!loading)
@@ -40,20 +40,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <h1 className="text-main font-semibold text-xl text-center mb-3">
           K22Transport
         </h1>
-        <CustomButton
-          primary
-          className="mx-1 text-base"
-          onClick={() => navigate("/missions")}
-        >
-          <IconChecklist size={20} />
-          Create mission
-        </CustomButton>
+        {user?.role === "admin" && (
+          <CustomButton
+            primary
+            className="mx-1 text-base"
+            onClick={() => setOpen("add")}
+          >
+            <IconChecklist size={20} />
+            Create mission
+          </CustomButton>
+        )}
       </SidebarHeader>
       <SidebarContent>
         {loading ? (
           <MiniLoader />
         ) : (
-          sidebarData.navGroups.map((props) => (
+          sidebarData?.navGroups?.map((props) => (
             <NavGroup key={props.title} {...props} />
           ))
         )}
