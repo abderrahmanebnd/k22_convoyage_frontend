@@ -12,7 +12,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-import { displaySuccessToast } from "@/ui/common/CustomAlert";
+import {
+  displayErrorToast,
+  displaySuccessToast,
+} from "@/ui/common/CustomAlert";
 import { Mission } from "@/services/Missions/getMissions";
 import { SelectDropdown } from "@/ui/common/SelectDropdown";
 import {
@@ -24,12 +27,15 @@ import {
   ResponsiveModalTitle,
 } from "@/components/ui/responsive-modal";
 import CustomButton from "@/ui/common/CustomButton";
+import { useDrivers } from "@/services/getDrivers";
+import { useUpdateMission } from "@/services/Missions/updateMission";
+import { useQueryClient } from "@tanstack/react-query";
 
 const carMatriculeRegex = /^[A-HJ-NP-TV-Z]{2}-\d{3}-[A-HJ-NP-TV-Z]{2}$/;
 
 const formSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  description: z.string().min(1, "Description is required"),
+  title: z.string(),
+  description: z.string(),
   status: z.enum(["completed", "in_progress", "cancelled"]),
   assignedDriver: z.object({
     _id: z.string(),
@@ -37,7 +43,6 @@ const formSchema = z.object({
     email: z.string().email(),
   }),
   carMatricule: z.string().regex(carMatriculeRegex, "Invalid matricule format"),
-  isEdit: z.boolean(),
 });
 
 type MissionForm = z.infer<typeof formSchema>;
@@ -53,8 +58,10 @@ export default function MissionsActionDialog({
   currentRow,
   open,
   onOpenChange,
-  drivers,
 }: Props) {
+  const { drivers, loading } = useDrivers();
+  const { mutate: updateMission, isPending: updating } = useUpdateMission();
+  const queryClient = useQueryClient();
   const isEdit = !!currentRow;
   const form = useForm<MissionForm>({
     resolver: zodResolver(formSchema),
@@ -66,17 +73,35 @@ export default function MissionsActionDialog({
           title: "",
           description: "",
           status: "in_progress",
-          assignedDriver: drivers[0] || { _id: "", name: "", email: "" },
+          assignedDriver: { _id: "", name: "", email: "" },
           carMatricule: "",
-          isEdit,
         },
   });
 
   const onSubmit = (values: MissionForm) => {
-    console.log("Submitted values:", values);
-    form.reset();
-    displaySuccessToast();
-    onOpenChange(false);
+    if (!currentRow?._id) {
+      displayErrorToast("Mission ID is missing.");
+      return;
+    }
+
+    const payload = {
+      ...values,
+      assignedDriver: values.assignedDriver._id, // Replace assignedDriver with just the _id
+    };
+
+    updateMission(
+      { missionId: currentRow._id, data: payload },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries("missions"); // Refetch missions
+          displaySuccessToast("Édité avec succès"); // Show success toast
+          onOpenChange(false); // Close the modal
+        },
+        onError: (error: unknown) => {
+          displayErrorToast(); // Show error toast
+        },
+      }
+    );
   };
 
   return (
@@ -159,14 +184,15 @@ export default function MissionsActionDialog({
                   <FormItem>
                     <FormLabel>Assigned Driver</FormLabel>
                     <SelectDropdown
+                      isPending={loading}
                       defaultValue={field.value?._id}
                       onValueChange={(value) =>
                         field.onChange(
-                          drivers.find((driver) => driver._id === value)
+                          drivers?.find((driver) => driver._id === value)
                         )
                       }
                       placeholder="Select a driver"
-                      items={drivers.map(({ _id, name, email }) => ({
+                      items={drivers?.map(({ _id, name, email }) => ({
                         label: `${name} | ${email}`,
 
                         value: _id,

@@ -9,6 +9,26 @@ export type User = {
   role: "client" | "driver";
 };
 
+export type Driver = {
+  _id: string;
+  name: string;
+  email: string;
+};
+
+export type Mission = {
+  _id: string;
+  title: string;
+  description: string;
+  status: "completed" | "in_progress" | "cancelled";
+  assignedDriver: {
+    _id: string;
+    name: string;
+    email: string;
+  };
+  carMatricule: string;
+  createdAt: string;
+};
+
 // Zod schema for form validation
 export const signupSchema = z
   .object({
