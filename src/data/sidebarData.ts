@@ -23,11 +23,11 @@ export const sidebarDataAdmin: SidebarData = {
           url: "/missions",
           icon: IconChecklist,
         },
-        {
-          title: "Users",
-          url: "/users",
-          icon: IconUsers,
-        },
+        // {
+        //   title: "Users",
+        //   url: "/users",
+        //   icon: IconUsers,
+        // },
       ],
     },
 

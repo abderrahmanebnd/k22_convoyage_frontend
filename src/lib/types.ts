@@ -28,6 +28,13 @@ export type Mission = {
   carMatricule: string;
   createdAt: string;
 };
+export type Pagination = {
+  total: number;
+  currentPage: number;
+  totalPages: number;
+  next: boolean;
+  prev: boolean;
+};
 
 // Zod schema for form validation
 export const signupSchema = z
