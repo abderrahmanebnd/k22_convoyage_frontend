@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Header } from "@/components/ui/header";
 import { Main } from "@/components/ui/main";
-import { useStats } from "@/services/getStats";
+import { useAdminStats } from "@/services/getStats";
 import MiniLoader from "@/ui/common/MiniLoader";
 import { ProfileDropdown } from "@/ui/common/ProfileDropdown";
 import { ThemeSwitch } from "@/ui/common/ThemeSwitch";
@@ -9,7 +9,7 @@ import { IconChecklist, IconUsers } from "@tabler/icons-react";
 import { Truck } from "lucide-react";
 
 export default function Dashboard() {
-  const { stats, loading } = useStats();
+  const { stats, loading } = useAdminStats();
 
   return (
     <>

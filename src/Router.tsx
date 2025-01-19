@@ -15,6 +15,7 @@ import DashboardLayout from "./ui/layouts/DashboardLayout";
 import ContactForm from "./features/Homepage/ContactForm";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import Missions from "./pages/Admin/Missions/Missions";
+import MyMissions from "./pages/Driver/MyMissions";
 
 export default function Router(): JSX.Element {
   return (
@@ -51,7 +52,7 @@ export default function Router(): JSX.Element {
             </ProtectedRoute>
           }
         >
-          <Route path="/my-missions" element={<ContactForm />} />
+          <Route path="/my-missions" element={<MyMissions />} />
           {/* <Route path="/profile" element={<ContactForm />} /> */}
         </Route>
 
