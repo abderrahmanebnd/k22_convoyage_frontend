@@ -34,6 +34,7 @@ export type Pagination = {
   totalPages: number;
   next: boolean;
   prev: boolean;
+  pageSize: number;
 };
 
 // Zod schema for form validation

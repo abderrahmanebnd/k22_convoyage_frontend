@@ -28,6 +28,8 @@ import {
 } from "@/components/ui/table";
 import { Mission } from "@/services/Missions/getMissions";
 import { MissionTableRowActions } from "./MissionTableRowActions";
+import { DataTablePagination } from "./MissionTablePagination";
+import { Pagination } from "@/lib/types";
 
 export const columns: ColumnDef<Mission>[] = [
   {
@@ -181,9 +183,14 @@ export const columns: ColumnDef<Mission>[] = [
 type MissionTableProps = {
   columns: ColumnDef<Mission>[];
   data: Mission[];
+  pagination: Pagination;
 };
 
-export default function MissionsTable({ columns, data }: MissionTableProps) {
+export default function MissionsTable({
+  columns,
+  data,
+  pagination,
+}: MissionTableProps) {
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -272,7 +279,7 @@ export default function MissionsTable({ columns, data }: MissionTableProps) {
           </TableBody>
         </Table>
       </div>
-      {/* <DataTablePagination table={table} /> */}
+      <DataTablePagination pagination={pagination} />
     </div>
   );
 }

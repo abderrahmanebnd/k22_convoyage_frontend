@@ -1,93 +1,49 @@
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  DoubleArrowLeftIcon,
-  DoubleArrowRightIcon,
-} from "@radix-ui/react-icons";
-import { Table } from "@tanstack/react-table";
+import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
-interface DataTablePaginationProps<TData> {
-  table: Table<TData>;
+import usePagination from "@/hooks/usePagination";
+import { Pagination } from "@/lib/types";
+
+interface DataTablePaginationProps {
+  pagination: Pagination;
 }
 
-export function DataTablePagination<TData>({
-  table,
-}: DataTablePaginationProps<TData>) {
+export function DataTablePagination({ pagination }: DataTablePaginationProps) {
+  const { noPagination, prevPage, nextPage } = usePagination({ pagination });
+
+  const { currentPage, totalPages, prev, next } = pagination;
+
+  if (noPagination) return null;
   return (
     <div className="flex items-center justify-between overflow-auto px-2">
-      <div className="hidden flex-1 text-sm text-muted-foreground sm:block">
-        {table.getFilteredSelectedRowModel().rows.length} of{" "}
-        {table.getFilteredRowModel().rows.length} row(s) selected.
-      </div>
       <div className="flex items-center sm:space-x-6 lg:space-x-8">
-        <div className="flex items-center space-x-2">
-          <p className="hidden text-sm font-medium sm:block">Rows per page</p>
-          <Select
-            value={`${table.getState().pagination.pageSize}`}
-            onValueChange={(value) => {
-              table.setPageSize(Number(value));
-            }}
-          >
-            <SelectTrigger className="h-8 w-[70px]">
-              <SelectValue placeholder={table.getState().pagination.pageSize} />
-            </SelectTrigger>
-            <SelectContent side="top">
-              {[10, 20, 30, 40, 50].map((pageSize) => (
-                <SelectItem key={pageSize} value={`${pageSize}`}>
-                  {pageSize}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+        {/* Rows per page */}
+        <div className="flex items-center space-x-2"></div>
+
+        {/* Page info */}
         <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-          Page {table.getState().pagination.pageIndex + 1} of{" "}
-          {table.getPageCount()}
+          Page {currentPage} sur {totalPages}
         </div>
+
+        {/* Pagination controls */}
         <div className="flex items-center space-x-2">
           <Button
             variant="outline"
-            className="hidden h-8 w-8 p-0 lg:flex"
-            onClick={() => table.setPageIndex(0)}
-            disabled={!table.getCanPreviousPage()}
+            className="h-8 w-8 md:h-fit md:w-fit md:p-2"
+            onClick={prevPage}
+            disabled={!prev}
           >
-            <span className="sr-only">Go to first page</span>
-            <DoubleArrowLeftIcon className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="outline"
-            className="h-8 w-8 p-0"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            <span className="sr-only">Go to previous page</span>
             <ChevronLeftIcon className="h-4 w-4" />
+            <span className="hidden md:block">Aller à la page précédente</span>
           </Button>
           <Button
             variant="outline"
-            className="h-8 w-8 p-0"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
+            className="h-8 w-8 md:h-fit md:w-fit md:p-2"
+            onClick={nextPage}
+            disabled={!next}
           >
-            <span className="sr-only">Go to next page</span>
+            <span className="hidden md:block">Aller à la page suivante</span>
             <ChevronRightIcon className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="outline"
-            className="hidden h-8 w-8 p-0 lg:flex"
-            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-            disabled={!table.getCanNextPage()}
-          >
-            <span className="sr-only">Go to last page</span>
-            <DoubleArrowRightIcon className="h-4 w-4" />
           </Button>
         </div>
       </div>
