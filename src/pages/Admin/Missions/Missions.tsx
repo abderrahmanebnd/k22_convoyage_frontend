@@ -26,7 +26,7 @@ export default function Missions() {
       <Header fixed>
         {/* <Search /> */}
         <div className="ml-auto flex items-center space-x-4">
-          <ThemeSwitch />
+          {/* <ThemeSwitch /> */}
           <ProfileDropdown />
         </div>
       </Header>

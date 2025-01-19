@@ -16,7 +16,7 @@ export default function Dashboard() {
       <Header>
         <div className="ml-auto flex items-center space-x-4">
           {/* <Search /> */}
-          <ThemeSwitch />
+          {/* <ThemeSwitch /> */}
           <ProfileDropdown />
         </div>
       </Header>

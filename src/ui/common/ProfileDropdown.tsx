@@ -11,10 +11,22 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/context/AuthProvider";
+import { useLogout } from "@/services/auth";
 import { Link } from "react-router-dom";
 
 export function ProfileDropdown() {
+  const { mutate: logout, isPending: loggingOut } = useLogout();
   const { user, loading } = useAuth();
+
+  const handleLogout = () => {
+    logout(undefined, {
+      onSuccess: () => {
+        // ("/login");
+        window.location.href = "/login";
+      },
+    });
+  };
+
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
@@ -38,15 +50,15 @@ export function ProfileDropdown() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem asChild>
+          {/* <DropdownMenuItem asChild>
             <Link to="/profile">
               Profile
               <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
             </Link>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem disabled={loggingOut} onClick={handleLogout}>
           Log out
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>

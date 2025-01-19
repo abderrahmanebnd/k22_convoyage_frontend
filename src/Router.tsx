@@ -42,9 +42,7 @@ export default function Router(): JSX.Element {
           }
         >
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/users" element={<ContactForm />} />
           <Route path="/missions" element={<Missions />} />
-          <Route path="/profile" element={<ContactForm />} />
         </Route>
         <Route
           element={
@@ -54,7 +52,7 @@ export default function Router(): JSX.Element {
           }
         >
           <Route path="/my-missions" element={<ContactForm />} />
-          <Route path="/profile" element={<ContactForm />} />
+          {/* <Route path="/profile" element={<ContactForm />} /> */}
         </Route>
 
         <Route
@@ -65,7 +63,7 @@ export default function Router(): JSX.Element {
           }
         >
           <Route path="/search" element={<ContactForm />} />
-          <Route path="/profile" element={<ContactForm />} />
+          {/* <Route path="/profile" element={<ContactForm />} /> */}
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>

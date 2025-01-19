@@ -31,22 +31,22 @@ export const sidebarDataAdmin: SidebarData = {
       ],
     },
 
-    {
-      title: "Other",
-      items: [
-        {
-          title: "Settings",
-          icon: IconSettings,
-          items: [
-            {
-              title: "Profile",
-              url: "/profile",
-              icon: IconUserCog,
-            },
-          ],
-        },
-      ],
-    },
+    // {
+    //   title: "Other",
+    //   items: [
+    //     {
+    //       title: "Settings",
+    //       icon: IconSettings,
+    //       items: [
+    //         {
+    //           title: "Profile",
+    //           url: "/profile",
+    //           icon: IconUserCog,
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
   ],
 };
 export const sidebarDataDriver: SidebarData = {
@@ -62,22 +62,22 @@ export const sidebarDataDriver: SidebarData = {
       ],
     },
 
-    {
-      title: "Other",
-      items: [
-        {
-          title: "Settings",
-          icon: IconSettings,
-          items: [
-            {
-              title: "Profile",
-              url: "/profile",
-              icon: IconUserCog,
-            },
-          ],
-        },
-      ],
-    },
+    // {
+    //   title: "Other",
+    //   items: [
+    //     {
+    //       title: "Settings",
+    //       icon: IconSettings,
+    //       items: [
+    //         {
+    //           title: "Profile",
+    //           url: "/profile",
+    //           icon: IconUserCog,
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
   ],
 };
 export const sidebarDataClient: SidebarData = {
@@ -98,21 +98,21 @@ export const sidebarDataClient: SidebarData = {
       ],
     },
 
-    {
-      title: "Other",
-      items: [
-        {
-          title: "Settings",
-          icon: IconSettings,
-          items: [
-            {
-              title: "Profile",
-              url: "/profile",
-              icon: IconUserCog,
-            },
-          ],
-        },
-      ],
-    },
+    // {
+    //   title: "Other",
+    //   items: [
+    //     {
+    //       title: "Settings",
+    //       icon: IconSettings,
+    //       items: [
+    //         {
+    //           title: "Profile",
+    //           url: "/profile",
+    //           icon: IconUserCog,
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
   ],
 };

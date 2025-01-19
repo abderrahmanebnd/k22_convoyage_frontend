@@ -30,7 +30,6 @@ import { displayErrorToast } from "./CustomAlert";
 export function NavUser() {
   const { mutate: logout, loading } = useLogout();
   const { isMobile } = useSidebar();
-  const navigate = useNavigate();
   const { user } = useAuth();
 
   const handleLogout = () => {
@@ -87,12 +86,12 @@ export function NavUser() {
 
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem asChild>
+              {/* <DropdownMenuItem asChild>
                 <Link to="/settings/account">
                   <BadgeCheck />
                   Account
                 </Link>
-              </DropdownMenuItem>
+              </DropdownMenuItem> */}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout} disabled={loading}>
