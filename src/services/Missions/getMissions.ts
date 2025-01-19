@@ -23,17 +23,20 @@ export type MissionResponse = {
   missions: Mission[];
   pagination: Pagination;
 };
-
-// API function to fetch missions
-export async function getMissions(page: number): Promise<MissionResponse> {
+// Generalized API function to fetch missions
+export async function fetchMissions(
+  endpoint: string,
+  page: number
+): Promise<MissionResponse> {
   const response = await axiosPrivate.get<MissionResponse>(
-    `/missions?page=${page}`
+    `/missions${endpoint}?page=${page}`
   );
+
   return response.data;
 }
 
 // Custom hook to fetch and manage missions
-export function useGetMissions() {
+export function useGetMissions(endpoint: string = "") {
   const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
 
@@ -42,21 +45,22 @@ export function useGetMissions() {
 
   // Fetch missions with React Query
   const { data, isLoading, isError, error } = useQuery<MissionResponse, Error>({
-    queryKey: ["missions", page],
-    queryFn: () => getMissions(page),
+    queryKey: [endpoint, page],
+    queryFn: () => fetchMissions(endpoint, page),
   });
 
+  // Prefetch next and previous pages if available
   if (data?.pagination?.next) {
     queryClient.prefetchQuery({
-      queryKey: ["missions", page + 1],
-      queryFn: () => getMissions(page + 1),
+      queryKey: [endpoint, page + 1],
+      queryFn: () => fetchMissions(endpoint, page + 1),
     });
   }
 
   if (data?.pagination?.prev) {
     queryClient.prefetchQuery({
-      queryKey: ["missions", page - 1],
-      queryFn: () => getMissions(page - 1),
+      queryKey: [endpoint, page - 1],
+      queryFn: () => fetchMissions(endpoint, page - 1),
     });
   }
 

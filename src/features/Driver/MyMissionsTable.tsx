@@ -1,16 +1,8 @@
 import { useState } from "react";
 import {
   ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
   flexRender,
   getCoreRowModel,
-  getFacetedRowModel,
-  getFacetedUniqueValues,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -27,10 +19,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Mission } from "@/services/Missions/getMissions";
-import { MissionTableRowActions } from "./MissionTableRowActions";
 
 import { Pagination } from "@/lib/types";
-import { DataTablePagination } from "../../../ui/common/PaginationTable";
+import { DataTablePagination } from "../../ui/common/PaginationTable";
+import { DriverMissionTableRowActions } from "./DriverMissionTableRowActions";
 
 export const columns: ColumnDef<Mission>[] = [
   {
@@ -136,34 +128,6 @@ export const columns: ColumnDef<Mission>[] = [
     enableSorting: false,
   },
   {
-    accessorKey: "assignedDriver.name",
-    id: "assignedDriverName",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Driver Name" />
-    ),
-    cell: ({ row }) => (
-      <LongText className="max-w-36">
-        {row.getValue("assignedDriverName")}
-      </LongText>
-    ),
-    enableHiding: false,
-    enableSorting: false,
-  },
-  {
-    accessorKey: "assignedDriver.email",
-    id: "assignedDriverEmail",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Driver Email" />
-    ),
-    cell: ({ row }) => (
-      <div className="w-fit text-wrap">
-        {row.getValue("assignedDriverEmail")}
-      </div>
-    ),
-    enableHiding: false,
-    enableSorting: false,
-  },
-  {
     accessorKey: "createdAt",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Created At" />
@@ -176,42 +140,41 @@ export const columns: ColumnDef<Mission>[] = [
     enableSorting: false,
   },
   {
+    accessorKey: "_id",
+    id: "missionId",
+    header: "Mission ID",
+    cell: ({ row }) => <div>{row.getValue("_id")}</div>,
+    enableSorting: false,
+  },
+  {
     id: "actions",
-    cell: MissionTableRowActions,
+    cell: DriverMissionTableRowActions,
   },
 ];
 
 type MissionTableProps = {
+  columns: ColumnDef<Mission>[];
   data: Mission[];
   pagination: Pagination;
 };
 
 export default function MissionsTable({ data, pagination }: MissionTableProps) {
   const [rowSelection, setRowSelection] = useState({});
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [sorting, setSorting] = useState<SortingState>([]);
 
   const table = useReactTable({
     data,
     columns,
+    initialState: {
+      columnVisibility: {
+        missionId: false,
+      },
+    },
     state: {
-      sorting,
-      columnVisibility,
       rowSelection,
-      columnFilters,
     },
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    onColumnVisibilityChange: setColumnVisibility,
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFacetedRowModel: getFacetedRowModel(),
-    getFacetedUniqueValues: getFacetedUniqueValues(),
   });
 
   return (
@@ -222,7 +185,7 @@ export default function MissionsTable({ data, pagination }: MissionTableProps) {
           <TableHeader>
             {table.getHeaderGroups()?.map((headerGroup) => (
               <TableRow key={headerGroup.id} className="group/row">
-                {headerGroup.headers?.map((header) => {
+                {headerGroup.headers.map((header) => {
                   return (
                     <TableHead
                       key={header.id}

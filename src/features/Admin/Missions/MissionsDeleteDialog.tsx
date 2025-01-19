@@ -34,7 +34,7 @@ export function MissionsDeleteDialog({
       { missionId: currentRow._id },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries("missions");
+          queryClient.invalidateQueries("/missions");
           displaySuccessToast("supprimé avec succès");
           onOpenChange(false);
         },

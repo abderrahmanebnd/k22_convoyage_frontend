@@ -1,22 +1,17 @@
 import { Header } from "@/components/ui/header";
 import { Main } from "@/components/ui/main";
-import MissionsProvider, {
-  useMissions,
-} from "@/context/Admin/MissionsProvider";
-import MissionsTable, {
-  columns,
-} from "@/features/Admin/Missions/MissionsTable";
+import { useMissions } from "@/context/Admin/MissionsProvider";
+import MissionsTable from "@/features/Admin/Missions/MissionsTable";
 import { useGetMissions } from "@/services/Missions/getMissions";
 import Loader from "@/ui/common/Loader";
 import { ProfileDropdown } from "@/ui/common/ProfileDropdown";
-import { ThemeSwitch } from "@/ui/common/ThemeSwitch";
 import { MissionsDialogs } from "../../../features/Admin/Missions/MissionsDialogs";
 import CustomButton from "@/ui/common/CustomButton";
 import { IconChecklist } from "@tabler/icons-react";
 
 export default function Missions() {
   // Parse user list
-  const { missions, pagination, loading, error } = useGetMissions();
+  const { missions, pagination, loading } = useGetMissions();
   const { setOpen } = useMissions();
   if (loading) {
     return <Loader />;
@@ -52,11 +47,7 @@ export default function Missions() {
           {/* <UsersPrimaryButtons /> */}
         </div>
         <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
-          <MissionsTable
-            data={missions}
-            pagination={pagination}
-            columns={columns}
-          />
+          <MissionsTable data={missions} pagination={pagination} />
         </div>
       </Main>
 
