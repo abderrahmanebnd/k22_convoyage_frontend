@@ -34,6 +34,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     queryFn: getMeApi,
     retry: false,
   });
+
   return (
     <AuthContext.Provider
       value={{

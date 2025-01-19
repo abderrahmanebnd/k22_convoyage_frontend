@@ -13,10 +13,16 @@ axiosPrivate.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Handle automatic logout
-      // displayErrorToast("Veuillez vous reconnecter, votre session a expiré !");
-      // console.log(error);
-      // window.location.href = "/login";
+      const currentPath = window.location.pathname;
+
+      // Check if the user is not on the /login or /signup path
+      if (currentPath !== "/login" && currentPath !== "/signup") {
+        // Reload the page
+        window.location.href = "/login";
+        displayErrorToast(
+          "Veuillez vous reconnecter, votre session a expiré !"
+        );
+      }
     }
     return Promise.reject(error);
   }
