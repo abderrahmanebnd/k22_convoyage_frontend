@@ -12,3 +12,5 @@ export const handleError = (error: unknown) => {
   else if (error instanceof Error) return error.message;
   else return "Something went wrong, Try Later!";
 };
+
+export const carMatriculeRegex = /^[A-HJ-NP-TV-Z]{2}-\d{3}-[A-HJ-NP-TV-Z]{2}$/;

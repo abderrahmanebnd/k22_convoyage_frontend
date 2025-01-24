@@ -1,8 +1,8 @@
-import { Button, ButtonProps } from "@/components/ui/button"; // Ensure ButtonProps is exported from your Button component
+import { Button, ButtonProps } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 type CustomButtonProps = ButtonProps & {
-  primary?: boolean; // Additional custom prop
+  primary?: boolean;
 };
 
 export default function CustomButton({
@@ -22,7 +22,7 @@ export default function CustomButton({
           : "",
         className
       )}
-      {...rest} // Spread remaining props here
+      {...rest}
     >
       {children}
     </Button>

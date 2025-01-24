@@ -31,8 +31,7 @@ import { useDrivers } from "@/services/getDrivers";
 import { useUpdateMission } from "@/services/Missions/updateMission";
 import { useQueryClient } from "@tanstack/react-query";
 import { useCreateMission } from "@/services/Missions/createMission";
-
-const carMatriculeRegex = /^[A-HJ-NP-TV-Z]{2}-\d{3}-[A-HJ-NP-TV-Z]{2}$/;
+import { carMatriculeRegex } from "@/lib/utils";
 
 const formSchema = z.object({
   title: z.string(),

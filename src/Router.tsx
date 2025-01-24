@@ -16,6 +16,7 @@ import ContactForm from "./features/Homepage/ContactForm";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import Missions from "./pages/Admin/Missions/Missions";
 import MyMissions from "./pages/Driver/MyMissions";
+import SearchForMission from "./pages/Client/SearchForMission";
 
 export default function Router(): JSX.Element {
   return (
@@ -63,7 +64,7 @@ export default function Router(): JSX.Element {
             </ProtectedRoute>
           }
         >
-          <Route path="/search" element={<ContactForm />} />
+          <Route path="/search" element={<SearchForMission />} />
           {/* <Route path="/profile" element={<ContactForm />} /> */}
         </Route>
         <Route path="*" element={<PageNotFound />} />
