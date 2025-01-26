@@ -27,10 +27,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Mission } from "@/services/Missions/getMissions";
-import { MissionTableRowActions } from "./MissionTableRowActions";
 
 import { Pagination } from "@/lib/types";
-import { DataTablePagination } from "../../../ui/common/PaginationTable";
+import { DataTablePagination } from "@/ui/common/PaginationTable";
 
 export const columns: ColumnDef<Mission>[] = [
   {
@@ -40,7 +39,7 @@ export const columns: ColumnDef<Mission>[] = [
         checked={table.getIsAllPageRowsSelected()}
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
-        className="translate-y-[2px]"
+        className="translate-y-[2px] "
       />
     ),
     meta: {
@@ -54,7 +53,7 @@ export const columns: ColumnDef<Mission>[] = [
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
-        className="translate-y-[2px]"
+        className="translate-y-[2px] "
       />
     ),
     enableSorting: false,
@@ -78,21 +77,6 @@ export const columns: ColumnDef<Mission>[] = [
     enableHiding: false,
     enableSorting: false,
   },
-  {
-    accessorKey: "description",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Description" />
-    ),
-    cell: ({ row }) => (
-      <LongText className="max-w-72 break-words">
-        {row.getValue("description")}
-      </LongText>
-    ),
-
-    enableHiding: false,
-    enableSorting: false,
-  },
-
   {
     accessorKey: "status",
     header: ({ column }) => (
@@ -146,20 +130,7 @@ export const columns: ColumnDef<Mission>[] = [
     enableHiding: false,
     enableSorting: false,
   },
-  {
-    accessorKey: "assignedDriver.email",
-    id: "assignedDriverEmail",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Driver Email" />
-    ),
-    cell: ({ row }) => (
-      <div className="w-fit text-wrap">
-        {row.getValue("assignedDriverEmail")}
-      </div>
-    ),
-    enableHiding: false,
-    enableSorting: false,
-  },
+
   {
     accessorKey: "createdAt",
     header: ({ column }) => (
@@ -171,10 +142,6 @@ export const columns: ColumnDef<Mission>[] = [
       return <div>{formattedDate}</div>;
     },
     enableSorting: false,
-  },
-  {
-    id: "actions",
-    cell: MissionTableRowActions,
   },
 ];
 
