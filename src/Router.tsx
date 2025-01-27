@@ -12,30 +12,88 @@ import PageNotFound from "./pages/PageNotFound";
 import ProtectedRoute from "./features/Auth/api/ProtectedRoute";
 import GuestRoute from "./features/Auth/api/GuestRoute";
 import DashboardLayout from "./ui/layouts/DashboardLayout";
-import ContactForm from "./features/Homepage/ContactForm";
 import Dashboard from "./pages/Admin/Dashboard/Dashboard";
 import Missions from "./pages/Admin/Missions/Missions";
 import MyMissions from "./pages/Driver/MyMissions";
 import SearchForMission from "./pages/Client/SearchForMission";
+import PageTitle from "./ui/common/PageTitle";
 
 export default function Router(): JSX.Element {
   return (
     <AuthProvider>
       <Routes>
-        {/* Landing Page */}
+        {/* Page d'accueil */}
         <Route element={<HomepageLayout />}>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/testimonials" element={<Testimonials />} />
-          <Route path="/prices" element={<OurPrices />} />
-          <Route path="/contact" element={<Contact />} />
-        </Route>
-        {/* Landing Page */}
-        <Route element={<GuestRoute />}>
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <PageTitle title="Accueil" />
+                <Homepage />
+              </>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <>
+                <PageTitle title="À propos" />
+                <About />
+              </>
+            }
+          />
+          <Route
+            path="/testimonials"
+            element={
+              <>
+                <PageTitle title="Témoignages" />
+                <Testimonials />
+              </>
+            }
+          />
+          <Route
+            path="/prices"
+            element={
+              <>
+                <PageTitle title="Nos tarifs" />
+                <OurPrices />
+              </>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <>
+                <PageTitle title="Contact" />
+                <Contact />
+              </>
+            }
+          />
         </Route>
 
+        {/* Routes pour les invités */}
+        <Route element={<GuestRoute />}>
+          <Route
+            path="/signup"
+            element={
+              <>
+                <PageTitle title="Inscription" />
+                <SignUp />
+              </>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <>
+                <PageTitle title="Connexion" />
+                <Login />
+              </>
+            }
+          />
+        </Route>
+
+        {/* Routes protégées pour l'administrateur */}
         <Route
           element={
             <ProtectedRoute roles={["admin"]}>
@@ -43,9 +101,27 @@ export default function Router(): JSX.Element {
             </ProtectedRoute>
           }
         >
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/missions" element={<Missions />} />
+          <Route
+            path="/dashboard"
+            element={
+              <>
+                <PageTitle title="Tableau de bord" />
+                <Dashboard />
+              </>
+            }
+          />
+          <Route
+            path="/missions"
+            element={
+              <>
+                <PageTitle title="Missions" />
+                <Missions />
+              </>
+            }
+          />
         </Route>
+
+        {/* Routes protégées pour le chauffeur */}
         <Route
           element={
             <ProtectedRoute roles={["driver"]}>
@@ -53,10 +129,19 @@ export default function Router(): JSX.Element {
             </ProtectedRoute>
           }
         >
-          <Route path="/my-missions" element={<MyMissions />} />
+          <Route
+            path="/my-missions"
+            element={
+              <>
+                <PageTitle title="Mes missions" />
+                <MyMissions />
+              </>
+            }
+          />
           {/* <Route path="/profile" element={<ContactForm />} /> */}
         </Route>
 
+        {/* Routes protégées pour le client */}
         <Route
           element={
             <ProtectedRoute roles={["client"]}>
@@ -64,10 +149,28 @@ export default function Router(): JSX.Element {
             </ProtectedRoute>
           }
         >
-          <Route path="/search" element={<SearchForMission />} />
+          <Route
+            path="/search"
+            element={
+              <>
+                <PageTitle title="Rechercher une mission" />
+                <SearchForMission />
+              </>
+            }
+          />
           {/* <Route path="/profile" element={<ContactForm />} /> */}
         </Route>
-        <Route path="*" element={<PageNotFound />} />
+
+        {/* Page non trouvée */}
+        <Route
+          path="*"
+          element={
+            <>
+              <PageTitle title="Page non trouvée" />
+              <PageNotFound />
+            </>
+          }
+        />
       </Routes>
     </AuthProvider>
   );
