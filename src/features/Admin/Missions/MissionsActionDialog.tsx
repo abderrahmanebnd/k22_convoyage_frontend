@@ -71,7 +71,6 @@ export default function MissionsActionDialog({
   const isEdit = !!currentRow;
   const disabled = updating || creating;
 
-  console.log(isEdit);
   const form = useForm<MissionForm>({
     resolver: zodResolver(formSchema),
     defaultValues: isEdit
@@ -90,7 +89,7 @@ export default function MissionsActionDialog({
   const onSubmit = (values: MissionForm) => {
     const payload = {
       ...values,
-      assignedDriver: values.assignedDriver._id, // Replace assignedDriver with just the _id
+      assignedDriver: values.assignedDriver._id,
     };
 
     // update session
@@ -103,11 +102,11 @@ export default function MissionsActionDialog({
         { missionId: currentRow._id, data: payload },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries("/missions"); // Refetch missions
+            queryClient.invalidateQueries({ queryKey: "/missions" }); // Refetch missions
             displaySuccessToast("Édité avec succès"); // Show success toast
             onOpenChange(false); // Close the modal
           },
-          onError: (error: unknown) => {
+          onError: () => {
             displayErrorToast(); // Show error toast
           },
         }
@@ -118,7 +117,7 @@ export default function MissionsActionDialog({
         { data: payload },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries("/missions"); // Refetch missions
+            queryClient.invalidateQueries({ queryKey: "/missions" }); // Refetch missions
             displaySuccessToast("Édité avec succès"); // Show success toast
             form.reset();
             onOpenChange(false); // Close the modal

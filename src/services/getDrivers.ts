@@ -11,7 +11,7 @@ export function useDrivers() {
     data: drivers,
     isPending: loading,
     error,
-  } = useQuery<Driver, Error>({
+  } = useQuery<Driver[], Error>({
     queryKey: ["drivers"],
     queryFn: getDrivers,
   });

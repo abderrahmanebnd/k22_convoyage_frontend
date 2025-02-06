@@ -1,11 +1,4 @@
-import {
-  BadgeCheck,
-  Bell,
-  ChevronsUpDown,
-  CreditCard,
-  LogOut,
-  Sparkles,
-} from "lucide-react";
+import { ChevronsUpDown, LogOut } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,14 +14,12 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Link, useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useAuth } from "@/context/AuthProvider";
 import { useLogout } from "@/services/auth";
-import { displayErrorToast } from "./CustomAlert";
 
 export function NavUser() {
-  const { mutate: logout, loading } = useLogout();
+  const { mutate: logout, isPending: loading } = useLogout();
   const { isMobile } = useSidebar();
   const { user } = useAuth();
 

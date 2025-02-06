@@ -1,6 +1,3 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import {
   Form,
   FormControl,
@@ -10,16 +7,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { carMatriculeRegex } from "@/lib/utils";
-
-// Define the schema for the form
-const SearchInputSchema = z.object({
-  carMatricule: z
-    .string()
-    .regex(carMatriculeRegex, "Format de matricule invalide"),
-});
-
-// Define the props type
 
 export function SearchMissionByCarNumber({
   form,

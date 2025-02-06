@@ -26,7 +26,7 @@ export default function SearchForMission() {
     },
   });
 
-  const { missions, error, loading, pagination } = useGetMissionsByCarMatricule(
+  const { missions, loading, pagination } = useGetMissionsByCarMatricule(
     form.watch("carMatricule") // Watch the carMatricule field
   );
 
@@ -34,7 +34,7 @@ export default function SearchForMission() {
     const subscription = form.watch((value, { name }) => {
       if (
         name === "carMatricule" &&
-        carMatriculeRegex.test(value.carMatricule)
+        carMatriculeRegex.test(value.carMatricule as string)
       ) {
         toast.loading("Searching for missions...", { duration: 1000 });
       }
@@ -42,7 +42,7 @@ export default function SearchForMission() {
     return () => subscription.unsubscribe();
   }, [form]);
 
-  function onSubmit(data: z.infer<typeof SearchInputSchema>) {}
+  function onSubmit() {}
 
   return (
     <>

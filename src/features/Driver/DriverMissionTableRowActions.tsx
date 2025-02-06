@@ -28,13 +28,14 @@ export function DriverMissionTableRowActions({ row }: MissionTableRowActions) {
     update(
       {
         missionId: row.getValue("missionId"),
+        // @ts-expect-error we are sending only status and it expect MissionToSent with title...
         data: {
           status: "completed",
         },
       },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries("/missions");
+          queryClient.invalidateQueries({ queryKey: "/missions" });
           displaySuccessToast("Mission terminée avec succès !");
         },
         onError: () => {

@@ -138,7 +138,7 @@ export const columns: ColumnDef<Mission>[] = [
     ),
     cell: ({ row }) => {
       const createdAt = row.getValue("createdAt");
-      const formattedDate = new Date(createdAt).toLocaleDateString(); // Formatting the date
+      const formattedDate = new Date(createdAt as string).toLocaleDateString(); // Formatting the date
       return <div>{formattedDate}</div>;
     },
     enableSorting: false,
@@ -191,7 +191,11 @@ export default function MissionsTable({ data, pagination }: MissionTableProps) {
                     <TableHead
                       key={header.id}
                       colSpan={header.colSpan}
-                      className={header.column.columnDef.meta?.className ?? ""}
+                      className={
+                        //@ts-expect-error className does not exist on meta tag
+
+                        header.column.columnDef.meta?.className ?? ""
+                      }
                     >
                       {header.isPlaceholder
                         ? null
@@ -216,7 +220,11 @@ export default function MissionsTable({ data, pagination }: MissionTableProps) {
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className={cell.column.columnDef.meta?.className ?? ""}
+                      className={
+                        //@ts-expect-error className does not exist on meta tag
+
+                        cell.column.columnDef.meta?.className ?? ""
+                      }
                     >
                       {flexRender(
                         cell.column.columnDef.cell,

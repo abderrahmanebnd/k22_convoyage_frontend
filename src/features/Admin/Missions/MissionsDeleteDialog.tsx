@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { IconAlertTriangle } from "@tabler/icons-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
@@ -6,7 +5,6 @@ import { Mission } from "@/services/Missions/getMissions";
 import { ConfirmDialog } from "@/ui/common/ConfirmDialog";
 import { useDeleteMission } from "@/services/Missions/deleteMission";
 import { useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
 import {
   displayErrorToast,
   displaySuccessToast,
@@ -24,7 +22,7 @@ export function MissionsDeleteDialog({
   currentRow,
 }: Props) {
   const queryClient = useQueryClient();
-  const { mutate: deleteMission, isPending, isError } = useDeleteMission();
+  const { mutate: deleteMission, isPending } = useDeleteMission();
   const handleDelete = () => {
     if (!currentRow?._id) {
       displayErrorToast("Mission ID is missing.");
@@ -34,7 +32,7 @@ export function MissionsDeleteDialog({
       { missionId: currentRow._id },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries("/missions");
+          queryClient.invalidateQueries({ queryKey: "/missions" });
           displaySuccessToast("supprimé avec succès");
           onOpenChange(false);
         },

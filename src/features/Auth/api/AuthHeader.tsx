@@ -1,5 +1,4 @@
 import { Handshake } from "lucide-react";
-import React from "react";
 
 interface AuthHeaderProps {
   title: string;

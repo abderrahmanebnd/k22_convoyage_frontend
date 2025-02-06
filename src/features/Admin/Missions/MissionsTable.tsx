@@ -226,7 +226,10 @@ export default function MissionsTable({ data, pagination }: MissionTableProps) {
                     <TableHead
                       key={header.id}
                       colSpan={header.colSpan}
-                      className={header.column.columnDef.meta?.className ?? ""}
+                      className={
+                        //@ts-expect-error className does not exist on meta tag
+                        header?.column.columnDef?.meta?.className ?? ""
+                      }
                     >
                       {header.isPlaceholder
                         ? null
@@ -251,7 +254,10 @@ export default function MissionsTable({ data, pagination }: MissionTableProps) {
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className={cell.column.columnDef.meta?.className ?? ""}
+                      className={
+                        //@ts-expect-error className does not exist on meta tag
+                        cell.column.columnDef.meta?.className ?? ""
+                      }
                     >
                       {flexRender(
                         cell.column.columnDef.cell,

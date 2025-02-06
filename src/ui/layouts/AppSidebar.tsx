@@ -54,6 +54,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {loading ? (
           <MiniLoader />
         ) : (
+          //@ts-expect-error sidebar used before initilaized
           sidebarData?.navGroups?.map((props) => (
             <NavGroup key={props.title} {...props} />
           ))
