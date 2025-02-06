@@ -11,7 +11,7 @@ import { IconChecklist } from "@tabler/icons-react";
 
 export default function Missions() {
   // Parse user list
-  const { missions, pagination, loading } = useGetMissions();
+  const { missions, pagination, loading } = useGetMissions("/missions");
   const { setOpen } = useMissions();
   if (loading) {
     return <Loader />;

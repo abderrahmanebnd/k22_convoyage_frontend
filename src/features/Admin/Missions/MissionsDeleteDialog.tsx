@@ -32,7 +32,7 @@ export function MissionsDeleteDialog({
       { missionId: currentRow._id },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: "/missions" });
+          queryClient.invalidateQueries({ queryKey: ["/missions"] });
           displaySuccessToast("supprimé avec succès");
           onOpenChange(false);
         },

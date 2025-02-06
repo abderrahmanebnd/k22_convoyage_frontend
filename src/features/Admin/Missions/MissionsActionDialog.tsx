@@ -102,7 +102,7 @@ export default function MissionsActionDialog({
         { missionId: currentRow._id, data: payload },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: "/missions" }); // Refetch missions
+            queryClient.invalidateQueries({ queryKey: ["/missions"] }); // Refetch missions
             displaySuccessToast("Édité avec succès"); // Show success toast
             onOpenChange(false); // Close the modal
           },
@@ -117,7 +117,7 @@ export default function MissionsActionDialog({
         { data: payload },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: "/missions" }); // Refetch missions
+            queryClient.invalidateQueries({ queryKey: ["/missions"] }); // Refetch missions
             displaySuccessToast("Édité avec succès"); // Show success toast
             form.reset();
             onOpenChange(false); // Close the modal

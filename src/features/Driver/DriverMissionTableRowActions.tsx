@@ -35,7 +35,7 @@ export function DriverMissionTableRowActions({ row }: MissionTableRowActions) {
       },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: "/missions" });
+          queryClient.invalidateQueries({ queryKey: ["/missions"] });
           displaySuccessToast("Mission terminée avec succès !");
         },
         onError: () => {
