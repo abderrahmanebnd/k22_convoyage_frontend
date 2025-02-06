@@ -7,7 +7,7 @@ export default function About() {
       <section className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10 items-center container mx-auto px-10 mb-5">
         <figure>
           <img
-            src="/images/about_us.webp"
+            src="/images/a_propos_us.webp"
             alt="Workspace with a coffee mug, notebook, pencil, and a laptop in the background."
             className="rounded-lg"
           />

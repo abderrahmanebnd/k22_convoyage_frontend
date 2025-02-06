@@ -12,9 +12,9 @@ import {
 
 const links: { to: string; text: string }[] = [
   { to: "/", text: "Accueil" },
-  { to: "/about", text: "À Propos" },
-  { to: "/testimonials", text: "Témoignages" },
-  { to: "/prices", text: "Nos Prix" },
+  { to: "/a_propos", text: "À Propos" },
+  { to: "/temoignages", text: "Témoignages" },
+  { to: "/prix", text: "Nos Prix" },
   { to: "/contact", text: "Contact" },
 ];
 

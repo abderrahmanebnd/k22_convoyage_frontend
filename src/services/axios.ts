@@ -9,6 +9,16 @@ const axiosPrivate = axios.create({
   withCredentials: true,
 });
 
+const routesAllowed: string[] = [
+  "/",
+  "/a_propos",
+  "/temoignages",
+  "/prix",
+  "/contact",
+  "/login",
+  "/signup",
+];
+
 axiosPrivate.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -16,7 +26,7 @@ axiosPrivate.interceptors.response.use(
       const currentPath = window.location.pathname;
 
       // Check if the user is not on the /login or /signup path
-      if (currentPath !== "/login" && currentPath !== "/signup") {
+      if (!routesAllowed.includes(currentPath)) {
         // Reload the page
         window.location.href = "/login";
         displayErrorToast(

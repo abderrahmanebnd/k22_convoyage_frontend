@@ -34,7 +34,7 @@ export default function Router(): JSX.Element {
             }
           />
           <Route
-            path="/about"
+            path="/a_propos"
             element={
               <>
                 <PageTitle title="À propos" />
@@ -43,7 +43,7 @@ export default function Router(): JSX.Element {
             }
           />
           <Route
-            path="/testimonials"
+            path="/temoignages"
             element={
               <>
                 <PageTitle title="Témoignages" />
@@ -52,7 +52,7 @@ export default function Router(): JSX.Element {
             }
           />
           <Route
-            path="/prices"
+            path="/prix"
             element={
               <>
                 <PageTitle title="Nos tarifs" />
