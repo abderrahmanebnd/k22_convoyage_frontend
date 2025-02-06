@@ -1,9 +1,6 @@
 import {
   IconChecklist,
   IconLayoutDashboard,
-  IconSettings,
-  IconUserCog,
-  IconUsers,
   IconCar,
 } from "@tabler/icons-react";
 import { type SidebarData } from "../lib/types";
@@ -23,30 +20,8 @@ export const sidebarDataAdmin: SidebarData = {
           url: "/missions",
           icon: IconChecklist,
         },
-        // {
-        //   title: "Users",
-        //   url: "/users",
-        //   icon: IconUsers,
-        // },
       ],
     },
-
-    // {
-    //   title: "Other",
-    //   items: [
-    //     {
-    //       title: "Settings",
-    //       icon: IconSettings,
-    //       items: [
-    //         {
-    //           title: "Profile",
-    //           url: "/profile",
-    //           icon: IconUserCog,
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // },
   ],
 };
 export const sidebarDataDriver: SidebarData = {
@@ -61,23 +36,6 @@ export const sidebarDataDriver: SidebarData = {
         },
       ],
     },
-
-    // {
-    //   title: "Other",
-    //   items: [
-    //     {
-    //       title: "Settings",
-    //       icon: IconSettings,
-    //       items: [
-    //         {
-    //           title: "Profile",
-    //           url: "/profile",
-    //           icon: IconUserCog,
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // },
   ],
 };
 export const sidebarDataClient: SidebarData = {

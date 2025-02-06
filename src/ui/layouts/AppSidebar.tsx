@@ -17,13 +17,12 @@ import { useAuth } from "@/context/AuthProvider";
 import { SidebarData } from "@/lib/types";
 import MiniLoader from "../common/MiniLoader";
 import CustomButton from "../common/CustomButton";
-import { useNavigate } from "react-router-dom";
 import { IconChecklist } from "@tabler/icons-react";
 import { useMissions } from "@/context/Admin/MissionsProvider";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { user, loading } = useAuth();
-  const { setOpen, open } = useMissions();
+  const { setOpen } = useMissions();
 
   let sidebarData: SidebarData;
   if (!loading)
@@ -63,7 +62,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarFooter>
         {/* TODO */}
 
-        <NavUser user={{ name: "abdou", email: "hello@gmail.com" }} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

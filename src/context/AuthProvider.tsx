@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { handleError } from "@/lib/utils";
 import { getMeApi } from "@/services/auth";
 
-// Define the user type (adjust based on your actual user model)
 interface User {
   _id: string;
   name: string;

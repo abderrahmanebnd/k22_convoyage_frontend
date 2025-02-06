@@ -166,8 +166,10 @@ export const columns: ColumnDef<Mission>[] = [
       <DataTableColumnHeader column={column} title="Created At" />
     ),
     cell: ({ row }) => {
-      const createdAt = row.getValue("createdAt");
-      const formattedDate = new Date(createdAt).toLocaleDateString(); // Formatting the date
+      const date = new Date(row.getValue("createdAt"));
+      const formattedDate = `${date.getFullYear()}-${String(
+        date.getMonth() + 1
+      ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
       return <div>{formattedDate}</div>;
     },
     enableSorting: false,

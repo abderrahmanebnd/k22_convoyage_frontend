@@ -4,7 +4,6 @@ import { Main } from "@/components/ui/main";
 import { useAdminStats } from "@/services/getStats";
 import MiniLoader from "@/ui/common/MiniLoader";
 import { ProfileDropdown } from "@/ui/common/ProfileDropdown";
-import { ThemeSwitch } from "@/ui/common/ThemeSwitch";
 import { IconChecklist, IconUsers } from "@tabler/icons-react";
 import { Truck } from "lucide-react";
 

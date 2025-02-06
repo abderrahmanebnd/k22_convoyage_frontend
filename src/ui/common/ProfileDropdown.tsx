@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/context/AuthProvider";
 import { useLogout } from "@/services/auth";
-import { Link } from "react-router-dom";
 
 export function ProfileDropdown() {
   const { mutate: logout, isPending: loggingOut } = useLogout();
