@@ -16,7 +16,7 @@ export default function MyMissions() {
     missions,
     pagination,
     loading: isGettingMissions,
-  } = useGetMissions("/missions");
+  } = useGetMissions("/missions/my-missions");
 
   return (
     <>

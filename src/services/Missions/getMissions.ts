@@ -27,7 +27,7 @@ export async function fetchMissions(
   page: number
 ): Promise<MissionResponse> {
   const response = await axiosPrivate.get<MissionResponse>(
-    `/missions${endpoint}?page=${page}`
+    `${endpoint}?page=${page}`
   );
 
   return response.data;
