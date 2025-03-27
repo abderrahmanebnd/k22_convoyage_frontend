@@ -141,12 +141,12 @@ export default function MissionsActionDialog({
       <ResponsiveModalContent>
         <ResponsiveModalHeader className="text-left">
           <ResponsiveModalTitle>
-            {isEdit ? "Edit Mission" : "Add New Mission"}
+            {isEdit ? "Modifier la mission" : "Ajouter une nouvelle mission"}
           </ResponsiveModalTitle>
           <ResponsiveModalDescription>
             {isEdit
-              ? "Update the Mission here. "
-              : "Create a new Mission here. "}
+              ? "Mettez à jour la mission ici. "
+              : "Créez une nouvelle mission ici. "}
             Click save when you&apos;re done.
           </ResponsiveModalDescription>
         </ResponsiveModalHeader>
@@ -162,9 +162,9 @@ export default function MissionsActionDialog({
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Title</FormLabel>
+                    <FormLabel>Titre</FormLabel>
                     <FormControl>
-                      <Input placeholder="Mission title" {...field} />
+                      <Input placeholder="Titre de la mission" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -177,7 +177,10 @@ export default function MissionsActionDialog({
                   <FormItem>
                     <FormLabel>Description</FormLabel>
                     <FormControl>
-                      <Input placeholder="Mission description" {...field} />
+                      <Input
+                        placeholder="Description de la mission"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -188,15 +191,15 @@ export default function MissionsActionDialog({
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Status</FormLabel>
+                    <FormLabel>Statut</FormLabel>
                     <SelectDropdown
                       defaultValue={field.value}
                       onValueChange={field.onChange}
-                      placeholder="Select status"
+                      placeholder="Sélectionnez le statut"
                       items={[
-                        { label: "Completed", value: "completed" },
-                        { label: "In Progress", value: "in_progress" },
-                        { label: "Cancelled", value: "cancelled" },
+                        { label: "Terminé", value: "completed" },
+                        { label: "En cours", value: "in_progress" },
+                        { label: "Annulé", value: "cancelled" },
                       ]}
                     />
                     <FormMessage />
@@ -208,7 +211,7 @@ export default function MissionsActionDialog({
                 name="assignedDriver"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Assigned Driver</FormLabel>
+                    <FormLabel>Chauffeur Assigné</FormLabel>
                     <SelectDropdown
                       isPending={loading}
                       defaultValue={field.value?._id}
@@ -217,10 +220,9 @@ export default function MissionsActionDialog({
                           drivers?.find((driver) => driver._id === value)
                         )
                       }
-                      placeholder="Select a driver"
+                      placeholder="Sélectionnez un chauffeur"
                       items={drivers?.map(({ _id, name, email }) => ({
                         label: `${name} | ${email}`,
-
                         value: _id,
                       }))}
                     />
@@ -233,7 +235,7 @@ export default function MissionsActionDialog({
                 name="carMatricule"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Car Matricule</FormLabel>
+                    <FormLabel>Matricule</FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., AB-123-CD" {...field} />
                     </FormControl>

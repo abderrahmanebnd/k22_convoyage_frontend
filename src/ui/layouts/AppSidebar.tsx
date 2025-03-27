@@ -46,7 +46,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             onClick={() => setOpen("add")}
           >
             <IconChecklist size={20} />
-            Create mission
+            Créer une mission
           </CustomButton>
         )}
       </SidebarHeader>

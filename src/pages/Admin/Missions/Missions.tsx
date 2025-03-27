@@ -36,14 +36,14 @@ export default function Missions() {
               Organisez et supervisez vos missions avec efficacité et clarité.
             </p>
           </div>
-          <CustomButton
+            <CustomButton
             primary
             className="mx-1 text-base"
             onClick={() => setOpen("add")}
-          >
+            >
             <IconChecklist size={20} />
-            Create mission
-          </CustomButton>{" "}
+            Créer une mission
+            </CustomButton>{" "}
           {/* <UsersPrimaryButtons /> */}
         </div>
         <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">

@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   } = useQuery<User, Error>({
     queryKey: ["authCheck"],
     queryFn: getMeApi,
+    staleTime: 1000 * 60 * 60 * 24, // 24 hours
     retry: false,
   });
 
