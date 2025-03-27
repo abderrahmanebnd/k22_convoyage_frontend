@@ -63,7 +63,7 @@ export const columns: ColumnDef<Mission>[] = [
   {
     accessorKey: "title",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Title" />
+      <DataTableColumnHeader column={column} title="Titre" />
     ),
     cell: ({ row }) => (
       <LongText className="max-w-36">{row.getValue("title")}</LongText>
@@ -87,18 +87,18 @@ export const columns: ColumnDef<Mission>[] = [
       <LongText className="max-w-72 break-words">
         {row.getValue("description")}
       </LongText>
-    ),
+        ),
 
-    enableHiding: false,
-    enableSorting: false,
-  },
+        enableHiding: false,
+        enableSorting: false,
+      },
 
-  {
-    accessorKey: "status",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Status" />
-    ),
-    cell: ({ row }) => {
+      {
+        accessorKey: "status",
+        header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Statut" />
+        ),
+        cell: ({ row }) => {
       const { status } = row.original;
       const badgeColor =
         status.toLowerCase() === "completed"
@@ -108,10 +108,17 @@ export const columns: ColumnDef<Mission>[] = [
           : status.toLowerCase() === "in_progress"
           ? "bg-yellow-100/30 text-yellow-600 dark:text-yellow-200 "
           : " ";
+
+      const statusEnFrench =
+        status === "completed"
+          ? "Terminé"
+          : status === "cancelled"
+          ? "Annulé"
+          : "En cours";
       return (
         <div className="flex space-x-2">
           <Badge variant="outline" className={cn("capitalize", badgeColor)}>
-            {row.getValue("status")}
+            <LongText>{statusEnFrench}</LongText>
           </Badge>
         </div>
       );
@@ -125,7 +132,7 @@ export const columns: ColumnDef<Mission>[] = [
   {
     accessorKey: "carMatricule",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Client Matricule" />
+      <DataTableColumnHeader column={column} title="Matricule" />
     ),
     cell: ({ row }) => (
       <div className="w-fit text-nowrap">{row.getValue("carMatricule")}</div>
@@ -136,7 +143,7 @@ export const columns: ColumnDef<Mission>[] = [
     accessorKey: "assignedDriver.name",
     id: "assignedDriverName",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Driver Name" />
+      <DataTableColumnHeader column={column} title="Chauffeur" />
     ),
     cell: ({ row }) => (
       <LongText className="max-w-36">
@@ -150,10 +157,10 @@ export const columns: ColumnDef<Mission>[] = [
     accessorKey: "assignedDriver.email",
     id: "assignedDriverEmail",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Driver Email" />
+      <DataTableColumnHeader column={column} title="Email du Chauffeur" />
     ),
     cell: ({ row }) => (
-      <div className="w-fit text-wrap">
+      <div className="w-fit break-words">
         {row.getValue("assignedDriverEmail")}
       </div>
     ),
@@ -163,14 +170,14 @@ export const columns: ColumnDef<Mission>[] = [
   {
     accessorKey: "createdAt",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Created At" />
+      <DataTableColumnHeader column={column} title="Créé le" />
     ),
     cell: ({ row }) => {
       const date = new Date(row.getValue("createdAt"));
       const formattedDate = `${date.getFullYear()}-${String(
         date.getMonth() + 1
       ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
-      return <div>{formattedDate}</div>;
+      return <LongText>{formattedDate}</LongText>;
     },
     enableSorting: false,
   },

@@ -80,7 +80,7 @@ export const columns: ColumnDef<Mission>[] = [
   {
     accessorKey: "status",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Status" />
+      <DataTableColumnHeader column={column} title="Statut" />
     ),
     cell: ({ row }) => {
       const { status } = row.original;
@@ -92,10 +92,17 @@ export const columns: ColumnDef<Mission>[] = [
           : status.toLowerCase() === "in_progress"
           ? "bg-yellow-100/30 text-yellow-600 dark:text-yellow-200 "
           : " ";
+
+      const statusEnFrench =
+        status === "completed"
+          ? "Terminé"
+          : status === "cancelled"
+          ? "Annulé"
+          : "En cours";
       return (
         <div className="flex space-x-2">
           <Badge variant="outline" className={cn("capitalize", badgeColor)}>
-            {row.getValue("status")}
+            <LongText>{statusEnFrench}</LongText>
           </Badge>
         </div>
       );
@@ -109,7 +116,7 @@ export const columns: ColumnDef<Mission>[] = [
   {
     accessorKey: "carMatricule",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Client Matricule" />
+      <DataTableColumnHeader column={column} title="Matricule" />
     ),
     cell: ({ row }) => (
       <div className="w-fit text-nowrap">{row.getValue("carMatricule")}</div>
@@ -120,7 +127,7 @@ export const columns: ColumnDef<Mission>[] = [
     accessorKey: "assignedDriver.name",
     id: "assignedDriverName",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Driver Name" />
+      <DataTableColumnHeader column={column} title="Chauffeur" />
     ),
     cell: ({ row }) => (
       <LongText className="max-w-36">
@@ -134,7 +141,7 @@ export const columns: ColumnDef<Mission>[] = [
   {
     accessorKey: "createdAt",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Created At" />
+      <DataTableColumnHeader column={column} title="Créé le" />
     ),
     cell: ({ row }) => {
       const createdAt = row.getValue("createdAt");
